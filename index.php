@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-$page = $_GET["page"];
+$page = $_GET["page"] ?? "home";
 ?>
 
 <!DOCTYPE html>
@@ -10,19 +10,25 @@ $page = $_GET["page"];
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>City Farmac</title>
 </head>
 
 <body>
     <?php
-    require_once 'header.php';
+    require_once './includes/components/header.php';
     ?>
     <main>
-
+        <?php
+            if (file_exists("views/$page.php")) {
+                require_once "views/$page.php";
+            } else {
+                require_once "views/error404.php";
+            }
+        ?>
 
     </main>
     <?php
-    require_once 'footer.php';
+    require_once './includes/components/footer.php';
     ?>
 </body>
 
