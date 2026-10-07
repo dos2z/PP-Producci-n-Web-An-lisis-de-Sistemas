@@ -1,0 +1,18 @@
+@import url('colors.css');
+
+body{
+    background-color: var(--background-color);
+}
+
+.btn-bg-primary{
+     background-color: var(--primary-color);
+     color: #fff;
+ }
+ .background-secondary{
+     background-color: var(--secondary-color) 
+ }
+ .btn-bg-primary:hover{
+    background-color: var(--primary-color-dark);
+    color: #fff;
+ }
+

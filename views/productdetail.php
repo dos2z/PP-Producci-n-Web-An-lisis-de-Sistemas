@@ -17,7 +17,7 @@
                 </div>
                 <div class="p-3">
 
-                    <a href="#" class="btn btn-primary">Agregar al carrito</a>
+                    <a href="#" class="btn btn-bg-primary">Agregar al carrito</a>
                 </div>
             </div>
         </div>

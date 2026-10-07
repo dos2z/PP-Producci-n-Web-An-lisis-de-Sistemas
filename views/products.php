@@ -28,7 +28,7 @@ $products = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
         </select>
 
     </div>
-    <button type="submit" class="btn btn-primary">Filtrar</button>
+    <button type="submit" class="btn btn-outline-primary">Filtrar </button>
 </form>
 
 <section class="container">
