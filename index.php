@@ -22,7 +22,7 @@ $page = $_GET["page"] ?? "home";
     <?php
     require_once './includes/components/header.php';
     ?>
-    <main>
+    <main class="container my-5">
         <?php
         if (file_exists("views/$page.php")) {
             require_once "views/$page.php";
