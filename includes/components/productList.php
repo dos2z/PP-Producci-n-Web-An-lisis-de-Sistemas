@@ -5,9 +5,10 @@
     echo "<h2>No hay productos para mostrar</h2>";
   }else{
     foreach ($products as $product) {
+      
   ?>
     <div class="card" style="width: 18rem;">
-      <img src="<?= $product['image']??"assets/imgs/genericprod.png" ?>" class="card-img-top" alt="...">
+      <img src="<?= "assets/imgs/products/".$product['img'].".png"??"assets/imgs/genericprod.png" ?>" class="card-img-top" alt="<?= $product['name'] ?? "Producto genérico"; ?>">
       <div class="card-body">
         <h5 class="card-title"><?= $product['name'] ?? "Producto genérico"; ?></h5>
         

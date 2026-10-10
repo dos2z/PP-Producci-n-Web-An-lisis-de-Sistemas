@@ -1,5 +1,6 @@
 <?php
-$products = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1];
+include_once 'includes/process/getProducts.php';
+
 //$products = [];
 ?>
 <h1>Productos</h1>

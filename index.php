@@ -1,6 +1,6 @@
 <?php
 
-session_start();
+//session_start();
 $page = $_GET["page"] ?? "home";
 if (!isset($_SESSION['user'])) {
     $page = $_GET["page"] ?? "adminpanel";

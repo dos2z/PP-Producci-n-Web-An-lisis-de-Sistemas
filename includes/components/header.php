@@ -1,5 +1,5 @@
 <?php
-$_SESSION['user'] = "Manolo";
+//$_SESSION['user'] = "";
 ?>
 
 <header>
