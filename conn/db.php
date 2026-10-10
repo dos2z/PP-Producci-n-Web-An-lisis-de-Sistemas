@@ -135,7 +135,16 @@ $products = [
     ]
 ];
 
-$user = [
+$categories = [
+    1 => 'Cuidado Personal',
+    2 => 'Medicamentos',
+    3 => 'Maquillaje',
+    4 => 'Higiene',
+    5 => 'Nutrición',
+    6 => 'Otros'
+];
+
+$users = [
     [
         'id' => 1,
         'name' => 'Pedro admin',

@@ -1,30 +1,12 @@
 <?php
-$products = [
-    [
-        'id' => 1,
-        'name' => 'Producto 1',
-        'description' => 'Descripción del producto 1',
-        'category' => 'Categoría 1',
-        'price' => 10.99,
-        'stock' => 5
-    ],
-    [
-        'id' => 2,
-        'name' => 'Producto 2',
-        'description' => 'Descripción del producto 2',
-        'category' => 'Categoría 2',
-        'price' => 19.99,
-        'stock' => 3
-    ],
-    [
-        'id' => 3,
-        'name' => 'Producto 3',
-        'description' => 'Descripción del producto 3 jajjsjasjjdjajsdjjasjdjjjskkajskdjkajskjdksajkdjksajdkjaskjdksajd',
-        'category' => 'Categoría 1',
-        'price' => 5.99,
-        'stock' => 10
-    ]
-];
+include_once 'includes/process/getProducts.php';
+session_start();
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
+    header("Location: index.php?page=home");
+    session_destroy();
+    exit();
+}
+
 ?>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
@@ -134,6 +116,10 @@ $products = [
                     <div class="mb-2">
                         <label for="stock" class="form-label">Stock</label>
                         <input type="number" class="form-control" id="stock">
+                    </div>
+                     <div class="mb-3">
+                        <label for="img" class="form-label">Imagen</label>
+                        <input type="text" class="form-control" id="img">
                     </div>
             </div>
             <div class="modal-footer">

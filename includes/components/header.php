@@ -1,5 +1,5 @@
 <?php
-//$_SESSION['user'] = "";
+
 ?>
 
 <header>
@@ -17,18 +17,26 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav">
-
-
-
-                    <?php if (isset($_SESSION['user'])) { ?>
+                    <?php
+                    if (isset($_SESSION['user']) && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == true) {
+                    ?>
                         <a class="nav-link <?php if ($_GET['page'] === 'profile') echo 'active'; ?>" href="index.php?page=adminpanel">Administrar</a>
-                        <a class="nav-link <?php if ($_GET['page'] === 'profile') echo 'active'; ?>" href="index.php?page=profile">Perfil</a>
-                        <a class="nav-link" href="includes/process/logout.php">Cerrar Sesión</a>
                     <?php } else { ?>
                         <a class="nav-link <?php if ($_GET['page'] === 'products') echo 'active'; ?>" href="index.php?page=products">Productos</a>
                         <a class="nav-link <?php if ($_GET['page'] === 'contact') echo 'active'; ?>" href="index.php?page=contact">Contacto</a>
+                    <?php } ?>
+
+                    <?php if (isset($_SESSION['user'])) {
+                    ?>
+                        
+                        <a class="nav-link <?php if ($_GET['page'] === 'profile') echo 'active'; ?>" href="index.php?page=profile">Perfil</a>
+                        <a class="nav-link" href="includes/process/logout.php">Cerrar Sesión</a>
+                    <?php } else {
+                    ?>
                         <a class="nav-link <?php if ($_GET['page'] === 'login') echo 'active'; ?>" href="index.php?page=login">Iniciar Sesión</a>
                     <?php } ?>
+
+
 
 
                 </div>

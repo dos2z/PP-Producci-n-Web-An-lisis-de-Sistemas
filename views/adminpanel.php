@@ -1,5 +1,12 @@
 <?php
-$user = $_SESSION['user'];
+session_start();
+/* if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
+    header("Location: index.php?page=home");
+    session_destroy();
+    exit();
+} */
+
+$user = $_SESSION['user'] ?? '';
 ?>
 
 <h1>Bienvenido <?= $user ?>!</h1>

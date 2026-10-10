@@ -1,11 +1,12 @@
 <?php
 $limit = 6;
 $orderBy = "popularity";
-$products = [1,2,3,4,5,6];
+include_once 'includes/process/getProducts.php';
+$user = $_SESSION['user'] ?? '';
 ?>
 
 
-<h1>Bienvenidos!!!</h1>
+<h1>Bienvenido!!!</h1>
 <section class = "container">
     <h2>Productos Destacados</h2>
     <div class="row">

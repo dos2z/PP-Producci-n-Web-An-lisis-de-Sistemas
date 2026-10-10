@@ -1,5 +1,6 @@
 <?php
 include_once 'includes/process/getProducts.php';
+include_once 'includes/process/getCategories.php';
 
 //$products = [];
 ?>
@@ -9,12 +10,11 @@ include_once 'includes/process/getProducts.php';
     <div class="mb-3 w-25">
         <select class="form-select" name="category" id="category">
             <option selected value="0">Categoría</option>
-            <option value="1">Cuidado Personal</option>
-            <option value="2">Medicamentos</option>
-            <option value="3">Maquillaje</option>
-            <option value="4">Higiene</option>
-            <option value="5">Nutrición</option>
-            <option value="6">Otros</option>
+            <?php
+            foreach ($categories as $id => $category) {
+                echo "<option value='$id'>$category</option>";
+            }
+            ?>
         </select>
 
     </div>
@@ -40,21 +40,21 @@ include_once 'includes/process/getProducts.php';
 
 </section>
 <div class="container d-flex justify-content-center my-5">
-<nav>
-    <ul class="pagination">
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Previous">
-                <span aria-hidden="true">&laquo;</span>
-            </a>
-        </li>
-        <li class="page-item"><a class="page-link" href="#">1</a></li>
-        <li class="page-item"><a class="page-link" href="#">2</a></li>
-        <li class="page-item"><a class="page-link" href="#">3</a></li>
-        <li class="page-item">
-            <a class="page-link" href="#" aria-label="Next">
-                <span aria-hidden="true">&raquo;</span>
-            </a>
-        </li>
-    </ul>
-</nav>
+    <nav>
+        <ul class="pagination">
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+            <li class="page-item"><a class="page-link" href="#">1</a></li>
+            <li class="page-item"><a class="page-link" href="#">2</a></li>
+            <li class="page-item"><a class="page-link" href="#">3</a></li>
+            <li class="page-item">
+                <a class="page-link" href="#" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
 </div>
