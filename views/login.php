@@ -1,10 +1,18 @@
-
+<?php
+if (isset($_GET['error'])) {
+    $error = $_GET['error'];
+}
+?>
 
 <h1>Ingresar</h1>
 <div>
     <span>Para registrarse haga clic </span><a href="index.php?page=register">aqui</a>
 </div>
 <div class="container my-5 p-5">
+
+    <?php if (isset($error)) { ?><div class="alert alert-danger w-50" role="alert">
+            email o contraseña incorrectos
+        </div> <?php } ?>
 
     <form method="post" action="includes/process/login.php" class="w-50">
         <div class="mb-3">

@@ -5,6 +5,7 @@ echo "<pre>";
 print_r($users);
 echo "<pre>";
 
+session_start();
 
 
 $email = $_POST['email'] ?? '';
@@ -12,13 +13,12 @@ $password = $_POST['password'] ?? '';
 
 foreach ($users as $user) {
     if ($user['email'] === $email && $user['password'] === $password) {
-        session_start();
         $_SESSION['user'] = $user['name'];
-        $_SESSION['is_admin'] = $user['admin'];
-        
+        $_SESSION['isAdmin'] = $user['admin'];
+
         header("Location: ../../index.php?page=home");
-        exit();
-    }else{
-        echo "Usuario o contraseña incorrectos";
+        break;
+    } else {
+        header("Location: ../../index.php?page=login&error=1");
     }
 }

@@ -7,11 +7,9 @@
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
         <div class="container-fluid">
-            <a class="navbar-brand" href="<?php if ((isset($_SESSION['user']))) {
-                                                echo "index.php?page=adminpanel";
-                                            } else {
-                                                echo "index.php?page=home";
-                                            } ?>"><img src="assets/imgs/logo.png" alt="City Farmac" width="200"></a>
+            <a class="navbar-brand" href="<?php
+                                            echo "index.php?page=home";
+                                            ?>"><img src="assets/imgs/logo.png" alt="City Farmac" width="200"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -28,7 +26,7 @@
 
                     <?php if (isset($_SESSION['user'])) {
                     ?>
-                        
+
                         <a class="nav-link <?php if ($_GET['page'] === 'profile') echo 'active'; ?>" href="index.php?page=profile">Perfil</a>
                         <a class="nav-link" href="includes/process/logout.php">Cerrar Sesión</a>
                     <?php } else {

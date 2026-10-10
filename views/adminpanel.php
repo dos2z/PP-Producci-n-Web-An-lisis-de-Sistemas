@@ -1,10 +1,12 @@
 <?php
-session_start();
-/* if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
+echo "<pre>";
+print_r($_SESSION); 
+echo "</pre>";
+if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     header("Location: index.php?page=home");
     session_destroy();
-    exit();
-} */
+    
+}
 
 $user = $_SESSION['user'] ?? '';
 ?>

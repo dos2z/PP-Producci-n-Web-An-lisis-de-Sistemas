@@ -1,4 +1,8 @@
 <?php
+if(isset($_SESSION['user']) && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === true) {
+    header("Location: index.php?page=adminpanel");
+
+}
 $limit = 6;
 $orderBy = "popularity";
 include_once 'includes/process/getProducts.php';
