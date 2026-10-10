@@ -2,4 +2,4 @@
 
 
 
-header("Location: ../../index.php?page=contact&error=1");
+header("Location: ../../index.php?page=contact&succes=1");

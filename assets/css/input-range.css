@@ -1,0 +1,43 @@
+.form-range::-webkit-slider-thumb {
+  background-color: #ffc107;
+  border: 2px solid #fff;
+  width: 20px;
+  height: 20px;
+  margin-top: -6px; /* Centra el pulgar en la pista */
+}
+
+.form-range::-moz-range-thumb {
+  background-color: #ffc107;
+  border: 2px solid #fff;
+  width: 20px;
+  height: 20px;
+}
+
+/* Personalizar la pista (fondo del input) */
+.form-range::-webkit-slider-runnable-track {
+  height: 8px;
+  background-color: #ffe188;
+  border-radius: 4px;
+}
+
+.form-range::-moz-range-track {
+  height: 8px;
+  background-color: #e6e5de;
+  border-radius: 4px;
+}
+
+
+/* 1. Modificar la sombra (anillo) al hacer clic o enfocar */
+.form-range:focus::-webkit-slider-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem #fbff0f; /* Sombra roja tipo Bootstrap */
+}
+
+.form-range:focus::-moz-range-thumb {
+  box-shadow: 0 0 0 1px #fff, 0 0 0 0.25rem #ffc107;
+}
+
+/* 2. Cambiar el color del círculo MIENTRAS se mantiene presionado (clic sostenido) */
+.form-range::-webkit-slider-thumb:active {
+  background-color: #ddb100; /* Color más oscuro al presionar */
+}
+

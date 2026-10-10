@@ -1,17 +1,40 @@
 <?php
 
-?>
-<div class="container d-flex justify-content-center">
+include_once 'conn/db.php';
+$prodId = $_GET['id'] ?? null;
+$index = array_search($prodId, array_column($products, 'id'));
+$product = $products[$index];
+$ranking = 100 * ($product['popularity'] / 5);
+$ranking = round($ranking, 1);
 
+
+?>
+<h1>Detalle</h1>
+
+<?php if (isset($_GET['coment'])) { ?>
+    <div class="alert alert-success w-50" role="success">
+        Calificación enviada
+    </div>
+
+<?php } ?>
+<?php if (isset($_GET['error'])) { ?>
+    <div class="alert alert-danger w-50" role="danger">
+        Ha ocurrido un problema, por favor intente nuevamente
+    </div>
+<?php } ?>
+<div class="container d-flex justify-content-center">
 
     <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0">
             <div class="col-md-6">
-                <img src="<?= $product['image'] ?? "assets/imgs/genericprod.png" ?>" class="img-fluid rounded-start" alt="...">
+                <img src="assets/imgs/products/<?= $product['img'] . ".png" ?? "assets/imgs/products/genericprod.png" ?>" class="img-fluid rounded-start" alt="...">
             </div>
             <div class="col-md-6">
                 <div class="card-body d-flex flex-column justify-content-between h-75">
                     <h5 class="card-title"><?= $product['name'] ?? "Nombre del producto" ?></h5>
+                    <div class="progress" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">
+                        <div class="progress-bar bg-warning bold" style="width: <?= $ranking ?>%"><?= $product['popularity'] ?? 0 ?></div>
+                    </div>
                     <p class="card-text"><?= $product['description'] ?? "Sin descripción disponible." ?></p>
                     <p class="card-text align-self-bottom">Precio: $<?= $product['price'] ?? "00000" ?></p>
                 </div>
@@ -22,4 +45,32 @@
             </div>
         </div>
     </div>
+</div>
+
+<!--comentario Prod -->
+
+<div class="container justify-content-center m-3">
+    <h2>Calificación</h2>
+    <form method="post" action="includes/process/rankingProduct.php" class="w-50">
+        <div class="mb-3">
+            <label for="name" class="form-label">Nombre</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="email" class="form-label">email</label>
+            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+        </div>
+
+        <label for="range3" class="form-label">Valoración</label>
+        <input type="range" class="form-range" min="0" max="5" step="1" id="range3" name="popularity">
+
+        <div class="mb-3">
+            <label for="message" class="form-label">Comentario</label>
+            <textarea class="form-control" id="message" rows="3" name="message" required></textarea>
+        </div>
+        <input type="hidden" value=<?= $prodId ?> name="id">
+
+        <button type="submit" class="btn btn-bg-primary">Enviar</button>
+    </form>
 </div>

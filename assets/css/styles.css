@@ -1,4 +1,5 @@
 @import url('colors.css');
+@import url('input-range.css');
 
 body{
     background-color: var(--background-color);
@@ -14,5 +15,9 @@ body{
  .btn-bg-primary:hover{
     background-color: var(--primary-color-dark);
     color: #fff;
+ }
+
+ .hidden {
+    display: none;
  }
 
