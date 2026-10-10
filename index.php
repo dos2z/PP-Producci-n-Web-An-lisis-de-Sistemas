@@ -29,6 +29,7 @@ $page = $_GET["page"] ?? "home";
     ?>
     <main class="container my-5">
         <?php
+       
         if (file_exists("views/$page.php")) {
             require_once "views/$page.php";
         } else {

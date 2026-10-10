@@ -174,13 +174,18 @@ $users = [
         'name' => 'Pedro admin',
         'email' => 'pedroadmin@ejemplo.com',
         'password' => '123456',
-        'admin' => true
+        'admin' => true,
+        'active' => true,
+        'date' => "08/05/26"
     ],
     [
         'id' => 2,
         'name' => 'Juan ',
         'email' => 'juan@ejemplo.com',
         'password' => '123456',
-        'admin' => false
+        'admin' => false,
+        'active' => true,
+        'date' => "10/10/26"
+
     ]
 ];
