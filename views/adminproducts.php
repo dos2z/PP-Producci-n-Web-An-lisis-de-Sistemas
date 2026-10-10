@@ -1,10 +1,10 @@
 <?php
 include_once 'includes/process/getProducts.php';
+include_once 'includes/process/getCategories.php';
 
 if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     header("Location: index.php?page=home");
     session_destroy();
-   
 }
 
 ?>
@@ -17,12 +17,11 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     <div class="mb-3 w-25">
         <select class="form-select" name="category" id="category">
             <option selected value="0">Categoría</option>
-            <option value="1">Cuidado Personal</option>
-            <option value="2">Medicamentos</option>
-            <option value="3">Maquillaje</option>
-            <option value="4">Higiene</option>
-            <option value="5">Nutrición</option>
-            <option value="6">Otros</option>
+            <?php
+            foreach ($categories as $id => $category) {
+                echo "<option value='$id'>$category</option>";
+            }
+            ?>
         </select>
 
     </div>
@@ -54,6 +53,8 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
             <th scope="col">Categoría</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
+            <th scope="col">Destacado</th>
+            <th scope="col">Activo</th>
             <th scope="col">Acciones</th>
 
         </tr>
@@ -70,9 +71,21 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                 <td><?= $product['category'] ?></td>
                 <td><?= $product['price'] ?></td>
                 <td><?= $product['stock'] ?></td>
+                <td><?= $product['best'] ?></td>
+                <td><?= $product['active'] ?></td>
                 <td>
-                    <a href="index.php?page=editproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-primary">Editar</a>
-                    <a href="index.php?page=deleteproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $product['id'] ?>">Editar</button>
+                    <a href="index.php?page=reviewsproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-info">Reseñas</a>
+                    <a href="index.php?page=activemodify&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
+                                                                                                                            if ($product['active']) {
+                                                                                                                                echo "Desactivar";
+                                                                                                                            } else {
+                                                                                                                                echo "Activar";
+                                                                                                                            }
+                                                                                                                            ?></a>
+                    <?php if (!$product['active']) { ?>
+                        <a href="index.php?page=deleteproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                    <?php } ?>
                 </td>
             </tr>
         <?php } ?>
@@ -80,7 +93,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     </table>
 <?php } ?>
 
-<!-- Modal -->
+<!-- Modal add Prod-->
 <div class="modal fade" id="addProductModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -90,46 +103,38 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
             </div>
             <div class="modal-body">
                 <form method="POST" action="includes/process/addProduct.php">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descripcion</label>
-                        <input type="text" class="form-control" id="description" required>
-                    </div>
-                    <div class="mb-3">
-                        <select class="form-select" name="category" id="category" required>
-                            <option selected value="0">Categoría</option>
-                            <option value="1">Cuidado Personal</option>
-                            <option value="2">Medicamentos</option>
-                            <option value="3">Maquillaje</option>
-                            <option value="4">Higiene</option>
-                            <option value="5">Nutrición</option>
-                            <option value="6">Otros</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="price" class="form-label">Precio</label>
-                        <input type="number" class="form-control" id="price" step="0.01" required>
-                    </div>
-                    <div class="mb-2">
-                        <label for="stock" class="form-label">Stock</label>
-                        <input type="number" class="form-control" id="stock">
-                    </div>
-                     <div class="mb-3">
-                        <label for="img" class="form-label">Imagen</label>
-                        <input type="text" class="form-control" id="img">
-                    </div>
+                    <?php
+                    include "includes/components/addproduct.php"
+                    ?>
+                </form>
             </div>
-            <div class="modal-footer">
-                <button type="submit" class="btn btn-primary">Agregar producto</button>
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+
+        </div>
+    </div>
+</div>
+
+<!-- Modal edit prod -->
+<?php
+foreach ($products as $product) {
+
+?>
+    <div class="modal fade" id="editProduct<?= $product['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addProductModalLabel">Editar producto <?= $product['name'] ?></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="POST" action="includes/process/editProduct.php">
+                        <input type="hidden" value=<?= $product['id'] ?> name="id">
+                        <?php
+                        include "includes/components/addproduct.php"
+                        ?>
+                    </form>
+                </div>
+
             </div>
         </div>
-        </form>
     </div>
-
-</div>
-</div>
-</div>
+<?php } ?>

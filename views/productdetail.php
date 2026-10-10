@@ -13,7 +13,7 @@ $ranking = round($ranking, 1);
 
 <?php if (isset($_GET['coment'])) { ?>
     <div class="alert alert-success w-50" role="success">
-        Calificación enviada
+        Calificación enviadag
     </div>
 
 <?php } ?>
@@ -47,7 +47,7 @@ $ranking = round($ranking, 1);
     </div>
 </div>
 
-<!--comentario Prod -->
+<!--comentario Producto -->
 
 <div class="container justify-content-center m-3">
     <h2>Calificación</h2>

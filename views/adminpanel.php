@@ -20,4 +20,7 @@ $user = $_SESSION['user'] ?? '';
     <li>
         <a href="index.php?page=admincategories">administrar categorías</a>
     </li>
+     <li>
+        <a href="index.php?page=admincategories">administrar usuarios</a>
+    </li>
 </ul>

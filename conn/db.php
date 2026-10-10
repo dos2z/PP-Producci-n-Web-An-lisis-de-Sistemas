@@ -3,6 +3,8 @@
 $products = [
     [
         'id' => 1,
+        'active' => true,
+        'best' => false,
         'name' => 'Paracetamol 500 mg',
         'description' => 'Analgésico y antifebril. Caja de 20 comprimidos.',
         'category' => 'Medicamentos',
@@ -14,6 +16,8 @@ $products = [
     ],
     [
         'id' => 2,
+        'active' => true,
+        'best' => false,
         'name' => 'Shampoo Reparador',
         'description' => 'Shampoo para cabello seco y dañado. Envase de 400 ml.',
         'category' => 'Cuidado Personal',
@@ -25,6 +29,8 @@ $products = [
     ],
     [
         'id' => 3,
+        'active' => true,
+        'best' => false,
         'name' => 'Labial Natural hidratante',
         'description' => 'Labial de larga duración, color natural, HIDRATANTE.',
         'category' => 'Maquillaje',
@@ -36,6 +42,8 @@ $products = [
     ],
     [
         'id' => 4,
+        'active' => true,
+        'best' => false,
         'name' => 'Alcohol en Gel 250ml',
         'description' => 'Gel sanitizante para manos con 70% de alcohol. 250 ml.',
         'category' => 'Higiene',
@@ -47,6 +55,8 @@ $products = [
     ],
     [
         'id' => 5,
+        'active' => false,
+        'best' => false,
         'name' => 'Multivitamínico',
         'description' => 'Suplemento con vitaminas y minerales. 30 cápsulas.',
         'category' => 'Nutrición',
@@ -58,6 +68,8 @@ $products = [
     ],
     [
         'id' => 6,
+        'active' => true,
+        'best' => false,
         'name' => 'Protector Solar FPS 50',
         'description' => 'Protector solar facial y corporal resistente al agua. 200 ml.',
         'category' => 'Cuidado Personal',
@@ -69,6 +81,8 @@ $products = [
     ],
     [
         'id' => 7,
+        'active' => true,
+        'best' => true,
         'name' => 'Ibuprofeno 400 mg',
         'description' => 'Antiinflamatorio y analgésico. Caja de 10 comprimidos.',
         'category' => 'Medicamentos',
@@ -80,6 +94,8 @@ $products = [
     ],
     [
         'id' => 8,
+        'active' => true,
+        'best' => false,
         'name' => 'Pasta Dental',
         'description' => 'Pasta dental con flúor para protección anticaries. 90 g.',
         'category' => 'Higiene',
@@ -91,6 +107,8 @@ $products = [
     ],
     [
         'id' => 9,
+        'active' => true,
+        'best' => false,
         'name' => 'Termómetro Digital',
         'description' => 'Termómetro electrónico de lectura rápida con pantalla LCD.',
         'category' => 'Otros',
@@ -102,6 +120,8 @@ $products = [
     ],
     [
         'id' => 10,
+        'active' => true,
+        'best' => false,
         'name' => 'Proteína en Polvo',
         'description' => 'Suplemento proteico sabor vainilla. Envase de 500 g.',
         'category' => 'Nutrición',
@@ -113,6 +133,8 @@ $products = [
     ],
     [
         'id' => 11,
+        'active' => true,
+        'best' => false,
         'name' => 'Jarabe para la Tos',
         'description' => 'Jarabe para el alivio de la tos seca. Frasco de 120 ml.',
         'category' => 'Medicamentos',
@@ -124,6 +146,8 @@ $products = [
     ],
     [
         'id' => 12,
+        'active' => true,
+        'best' => false,
         'name' => 'Crema Hidratante',
         'description' => 'Crema hidratante corporal para piel seca y sensible. Envase de 250 ml.',
         'category' => 'Cuidado Personal',
