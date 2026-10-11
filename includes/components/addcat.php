@@ -25,7 +25,7 @@ $formId = isset($category['id'])
             class="form-control"
             id="name<?= $formId ?>"
             name="name"
-            value="<?= htmlspecialchars($category['name'] ?? '') ?>"
+            value="<?= $category['name'] ?? '' ?>"
             required
         >
     </div>
@@ -40,7 +40,7 @@ $formId = isset($category['id'])
             id="description<?= $formId ?>"
             name="description"
             rows="3"
-        ><?= htmlspecialchars($category['description'] ?? '') ?></textarea>
+        ><?= $category['description'] ?? '' ?></textarea>
     </div>
 
     <div class="mb-3">
@@ -71,7 +71,7 @@ $formId = isset($category['id'])
                             ? 'selected'
                             : '' ?>
                     >
-                        <?= htmlspecialchars($parent['name']) ?>
+                        <?= $parent['name'] ?>
                     </option>
 
                 <?php } ?>

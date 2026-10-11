@@ -2,14 +2,13 @@
 
 include_once 'conn/db.php';
 
-// Obtener la categoría padre desde la URL
-$parentId = filter_input(
-    INPUT_GET,
-    'parent',
-    FILTER_VALIDATE_INT
-);
+// Obtener la categoría padre 
+$parentId = $_GET['parent'] ?? null;
 
-$parentId = $parentId ?: null;
+
+
+$parentId = (int)$parentId ?? null;
+var_dump($parentId);
 
 $parentCategory = null;
 
@@ -17,12 +16,10 @@ $parentCategory = null;
 if ($parentId !== null) {
 
     foreach ($categories as $item) {
-
-        if (
-            (int)$item['id'] === $parentId &&
-            $item['parent_id'] === null
-        ) {
+        
+        if ((int)$item['id'] === $parentId && $item['parent_id'] === null) {
             $parentCategory = $item;
+
             break;
         }
     }
@@ -30,6 +27,7 @@ if ($parentId !== null) {
     // Si el ID no corresponde a una categoría principal
     if ($parentCategory === null) {
         $parentId = null;
+       
     }
 }
 
@@ -50,12 +48,18 @@ $visibleCategories = array_filter(
 
         <div>
             <h1>Administración de Categorías</h1>
+            <?php
+            if (isset($_GET['success'])) {
+                $type = 'success';
+                $message = 'Categoria agregada.';
 
-            <?php if ($parentCategory !== null): ?>
+                include 'includes/components/alert.php';
+            }
+            if ($parentCategory !== null): ?>
 
                 <p class="text-muted">
                     Subcategorías de
-                    <?= htmlspecialchars($parentCategory['name']) ?>
+                    <?= $parentCategory['name'] ?>
                 </p>
 
                 <a
@@ -102,11 +106,11 @@ $visibleCategories = array_filter(
                         <td><?= (int)$item['id'] ?></td>
 
                         <td>
-                            <?= htmlspecialchars($item['name']) ?>
+                            <?= $item['name'] ?>
                         </td>
 
                         <td>
-                            <?= htmlspecialchars($item['description'] ?? '') ?>
+                            <?= $item['description'] ?? '' ?>
                         </td>
 
                         <td>
@@ -208,7 +212,7 @@ $visibleCategories = array_filter(
                     'parent_id' => $parentId
                 ];
 
-                include 'includes/components/addcategory.php';
+                include 'includes/components/addcat.php';
                 ?>
 
             </div>
@@ -251,7 +255,7 @@ $visibleCategories = array_filter(
 
                     <?php
                     $category = $item;
-                    include 'includes/components/addcategory.php';
+                    include 'includes/components/addcat.php';
                     ?>
 
                 </div>
