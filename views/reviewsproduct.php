@@ -9,7 +9,7 @@ $productReviews = array_filter($reviews, function ($review) use ($prodId) {
     return $review['product_id'] == $prodId;
 })
 ?>
-
+<a href="index.php?page=adminproducts" type="button" class="btn btn-primary">◄ Volver a Productos</a>
 <h1>Reviews de producto <?= $product['name'] ?></h1>
 
 <div class="progress my-5" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">

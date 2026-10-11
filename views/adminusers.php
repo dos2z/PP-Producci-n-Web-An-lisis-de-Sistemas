@@ -61,7 +61,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                 <td><?= $user['active'] ?></td>
                 <td>
                     <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $user['id'] ?>">Editar</button>
-                    <a href="index.php?page=reviewsproduct&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-info">Reseñas</a>
+             
                     <a href="index.php?page=activemodify&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
                                                                                                                         if ($user['active']) {
                                                                                                                             echo "Desactivar";

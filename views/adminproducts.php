@@ -53,6 +53,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
             <th scope="col">Categoría</th>
             <th scope="col">Precio</th>
             <th scope="col">Stock</th>
+            <th scope="col">Valoración</th>
             <th scope="col">Destacado</th>
             <th scope="col">Activo</th>
             <th scope="col">Acciones</th>
@@ -71,6 +72,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                 <td><?= $product['category'] ?></td>
                 <td><?= $product['price'] ?></td>
                 <td><?= $product['stock'] ?></td>
+                <td><?= $product['popularity'] ?>⭐</td>
                 <td><?= $product['best'] ?></td>
                 <td><?= $product['active'] ?></td>
                 <td>

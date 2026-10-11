@@ -6,11 +6,41 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
 
 $user = $_SESSION['user'] ?? '';
 ?>
-<h1>Bienvenido <?= $user ?>!</h1>
-<div class="btn-group" role="group" aria-label="Basic example">
-    <a href="index.php?page=profile" type="button" class="btn btn-primary">Mi perfil</a>
-    <a href="index.php?page=adminmessages" type="button" class="btn btn-primary">Ver Mensajes</a>
-    <a href="index.php?page=adminproducts" type="button" class="btn btn-primary">Ver Productos</a>
-    <a ref="index.php?page=admincategories" type="button" class="btn btn-primary">Ver categorias</a>
-    <a href="index.php?page=adminusers" type="button" class="btn btn-primary">Administrar usuarios</a>
+<h1 class="m-5">Bienvenido <?= $user ?>!</h1>
+<div class="container h-100 w-100 d-flex justify-content-center align-items-center">
+    <div class="flex-wrap justify-content-center">
+
+        <a href="index.php?page=adminmessages" type="button" class="btn btn-primary">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/imgs/adminmsg.png" class="card-img-top" alt="Ver Mensajes">
+                <div class="card-body">
+                    <h5 class="card-title">Ver Mensajes</h5>
+                </div>
+            </div>
+        </a>
+        <a href="index.php?page=adminproducts" type="button" class="btn btn-primary">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/imgs/adminprods.png" class="card-img-top" alt="Administrar Productos">
+                <div class="card-body">
+                    <h5 class="card-title">Administrar Productos</h5>
+                </div>
+            </div>
+        </a>
+        <a ref="index.php?page=admincategories" type="button" class="btn btn-primary">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/imgs/admincat.png" class="card-img-top" alt="Administrar Categorias">
+                <div class="card-body">
+                    <h5 class="card-title">Administrar Categorias</h5>
+                </div>
+            </div>
+        </a>
+        <a href="index.php?page=adminusers" type="button" class="btn btn-primary">
+            <div class="card" style="width: 18rem;">
+                <img src="assets/imgs/adminusers.png" class="card-img-top" alt="Administrar usuarios">
+                <div class="card-body">
+                    <h5 class="card-title">Administrar Usuarios</h5>
+                </div>
+            </div>
+        </a>
+    </div>
 </div>
