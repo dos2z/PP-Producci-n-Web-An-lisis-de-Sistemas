@@ -33,17 +33,18 @@ $page = $_GET["page"] ?? "home";
             require_once './includes/components/adminnav.php';
         }
         ?>
-        <main class="container my-5">
-            <?php
-
-
-            if (file_exists("views/$page.php")) {
-                require_once "views/$page.php";
-            } else {
-                require_once "views/error404.php";
-            }
-            ?>
     </header>
+    <main class="container my-5">
+        <?php
+
+
+        if (file_exists("views/$page.php")) {
+            require_once "views/$page.php";
+        } else {
+            require_once "views/error404.php";
+        }
+        ?>
+
     </main>
     <?php
     require_once './includes/components/footer.php';

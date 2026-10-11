@@ -215,38 +215,75 @@ $categories = [
     [
         'id' => 1,
         'name' => 'Cuidado Personal',
-        'description' => 'Productos para el cuidado personal.',
+        'description' => 'Productos de cuidado personal',
+        'parent_id' => null,
         'active' => true
     ],
     [
         'id' => 2,
         'name' => 'Medicamentos',
-        'description' => 'Medicamentos y productos farmacéuticos.',
+        'description' => 'Productos medicinales',
+        'parent_id' => null,
         'active' => true
     ],
     [
         'id' => 3,
         'name' => 'Maquillaje',
-        'description' => 'Productos de maquillaje y belleza.',
+        'description' => 'Productos de maquillaje',
+        'parent_id' => null,
         'active' => true
     ],
     [
         'id' => 4,
         'name' => 'Higiene',
-        'description' => 'Productos de higiene diaria.',
+        'description' => 'Productos de higiene',
+        'parent_id' => null,
         'active' => true
     ],
     [
         'id' => 5,
         'name' => 'Nutrición',
-        'description' => 'Suplementos y productos nutricionales.',
+        'description' => 'Productos de nutrición',
+        'parent_id' => null,
         'active' => true
     ],
     [
         'id' => 6,
         'name' => 'Otros',
-        'description' => 'Otros productos de farmacia.',
-        'active' => false
+        'description' => 'Otros productos',
+        'parent_id' => null,
+        'active' => true
+    ],
+
+    // Subcategorías
+
+    [
+        'id' => 7,
+        'name' => 'Cuidado Facial',
+        'description' => 'Cuidado del rostro',
+        'parent_id' => 1,
+        'active' => true
+    ],
+    [
+        'id' => 8,
+        'name' => 'Cuidado Capilar',
+        'description' => 'Cuidado del cabello',
+        'parent_id' => 1,
+        'active' => true
+    ],
+    [
+        'id' => 9,
+        'name' => 'Analgésicos',
+        'description' => 'Medicamentos para aliviar el dolor',
+        'parent_id' => 2,
+        'active' => true
+    ],
+    [
+        'id' => 10,
+        'name' => 'Vitaminas',
+        'description' => 'Suplementos vitamínicos',
+        'parent_id' => 5,
+        'active' => true
     ]
 ];
 

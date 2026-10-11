@@ -12,8 +12,7 @@ include_once 'conn/db.php';
             type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#addBrandModal"
-        >
+            data-bs-target="#addBrandModal">
             Agregar marca
         </button>
 
@@ -36,7 +35,7 @@ include_once 'conn/db.php';
 
             <tbody>
 
-                <?php foreach ($brands as $brand): ?>
+                <?php foreach ($brands as $brand) { ?>
 
                     <tr>
                         <td><?= $brand['id'] ?></td>
@@ -46,11 +45,11 @@ include_once 'conn/db.php';
                         </td>
 
                         <td>
-                            <?php if ($brand['active']){ ?>
+                            <?php if ($brand['active']) { ?>
                                 <span class="badge bg-success">
                                     Activa
                                 </span>
-                            <?php } else{ ?>
+                            <?php } else { ?>
                                 <span class="badge bg-danger">
                                     Inactiva
                                 </span>
@@ -62,21 +61,19 @@ include_once 'conn/db.php';
                                 type="button"
                                 class="btn btn-warning btn-sm"
                                 data-bs-toggle="modal"
-                                data-bs-target="#editBrand<?= $brand['id'] ?>"
-                            >
+                                data-bs-target="#editBrand<?= $brand['id'] ?>">
                                 Editar
                             </button>
 
                             <button
                                 type="button"
-                                class="btn btn-sm <?= $brand['active'] ? 'btn-outline-danger' : 'btn-success' ?>"
-                            >
+                                class="btn btn-sm <?= $brand['active'] ? 'btn-outline-danger' : 'btn-success' ?>">
                                 <?= $brand['active'] ? 'Inactivar' : 'Activar' ?>
                             </button>
                         </td>
                     </tr>
 
-                <?php endforeach; ?>
+                <?php } ?>
 
             </tbody>
         </table>
@@ -89,10 +86,10 @@ include_once 'conn/db.php';
 <!-- MODAL AGREGAR MARCA -->
 
 <div class="modal fade"
-     id="addBrandModal"
-     tabindex="-1"
-     aria-labelledby="addBrandTitle"
-     aria-hidden="true">
+    id="addBrandModal"
+    tabindex="-1"
+    aria-labelledby="addBrandTitle"
+    aria-hidden="true">
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -111,10 +108,12 @@ include_once 'conn/db.php';
             </div>
 
             <div class="modal-body">
-                <?php
-                $brand = [];
-                include 'includes/components/addbrand.php';
-                ?>
+                <form method="POST" action="includes/process/addBrand.php">
+                    <?php
+                    $brand = [];
+                    include 'includes/components/addbrand.php';
+                    ?>
+                </form>
             </div>
 
         </div>
@@ -127,10 +126,10 @@ include_once 'conn/db.php';
 <?php foreach ($brands as $brand): ?>
 
     <div class="modal fade"
-         id="editBrand<?= $brand['id'] ?>"
-         tabindex="-1"
-         aria-labelledby="editBrandTitle<?= $brand['id'] ?>"
-         aria-hidden="true">
+        id="editBrand<?= $brand['id'] ?>"
+        tabindex="-1"
+        aria-labelledby="editBrandTitle<?= $brand['id'] ?>"
+        aria-hidden="true">
 
         <div class="modal-dialog">
             <div class="modal-content">
@@ -152,11 +151,11 @@ include_once 'conn/db.php';
                 </div>
 
                 <div class="modal-body">
-
-                    <?php
-                    include 'includes/components/addbrand.php';
-                    ?>
-
+                    <form method="POST" action="includes/process/editBrand.php">
+                        <?php
+                        include 'includes/components/addbrand.php';
+                        ?>
+                    </form>
                 </div>
 
             </div>

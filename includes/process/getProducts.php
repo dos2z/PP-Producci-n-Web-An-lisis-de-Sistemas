@@ -5,10 +5,10 @@ $featuredOnly = $featuredOnly ?? false;
 $orderBy = $orderBy ?? null;
 $limit = $limit ?? null;
 
-// Filtrar productos activos
+/* // Filtrar productos activos
 $products = array_filter($products, function ($product) {
     return $product['active'] === true;
-});
+}); */
 
 // Filtrar destacados
 if ($featuredOnly) {

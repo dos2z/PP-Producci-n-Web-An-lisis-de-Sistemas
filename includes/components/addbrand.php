@@ -1,4 +1,4 @@
-<form method="POST" action="includes/process/brand.php">
+
 
     <input
         type="hidden"
@@ -25,4 +25,3 @@
         Guardar
     </button>
 
-</form>

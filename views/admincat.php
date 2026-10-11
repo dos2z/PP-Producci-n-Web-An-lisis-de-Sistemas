@@ -1,130 +1,263 @@
 <?php
+
 include_once 'conn/db.php';
 
-if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
-    header("Location: index.php?page=home");
-    session_destroy();
+// Obtener la categoría padre desde la URL
+$parentId = filter_input(
+    INPUT_GET,
+    'parent',
+    FILTER_VALIDATE_INT
+);
+
+$parentId = $parentId ?: null;
+
+$parentCategory = null;
+
+// Buscar la categoría padre
+if ($parentId !== null) {
+
+    foreach ($categories as $item) {
+
+        if (
+            (int)$item['id'] === $parentId &&
+            $item['parent_id'] === null
+        ) {
+            $parentCategory = $item;
+            break;
+        }
+    }
+
+    // Si el ID no corresponde a una categoría principal
+    if ($parentCategory === null) {
+        $parentId = null;
+    }
 }
 
+// Seleccionar categorías para mostrar
+$visibleCategories = array_filter(
+    $categories,
+    function ($category) use ($parentId) {
+        return $category['parent_id'] === $parentId;
+    }
+);
+
 ?>
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addcatModal">
-    Añadir Categoría
-</button>
 
-<form method="POST" action="includes/process/getProducts.php" class="my-3 d-flex gap-3">
+<section class="container my-5">
 
-    <div class="mb-3 w-25">
-        <select class="form-select" name="orderBy" id="orderBy">
-            <option selected value="0">Ordenar por</option>
-            <option value="1">Más reciente</option>
-            <option value="2">Más antiguo</option>
-            <option value="3">A-Z</option>
-            <option value="4">Z-A</option>
-        </select>
+    <div class="d-flex flex-wrap justify-content-between
+                align-items-center gap-3 mb-4">
+
+        <div>
+            <h1>Administración de Categorías</h1>
+
+            <?php if ($parentCategory !== null): ?>
+
+                <p class="text-muted">
+                    Subcategorías de
+                    <?= htmlspecialchars($parentCategory['name']) ?>
+                </p>
+
+                <a
+                    href="index.php?page=admincat"
+                    class="btn btn-outline-secondary btn-sm">
+                    Volver a categorías
+                </a>
+
+            <?php endif; ?>
+        </div>
+
+        <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#addCategoryModal">
+            Agregar categoría
+        </button>
 
     </div>
-    <button type="submit" class="btn btn-outline-primary">Filtrar </button>
-</form>
+
+    <!-- TABLA -->
+
+    <div class="table-responsive">
+
+        <table class="table table-striped table-hover align-middle">
+
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Descripción</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                <?php foreach ($visibleCategories as $item) { ?>
+
+                    <tr>
+
+                        <td><?= (int)$item['id'] ?></td>
+
+                        <td>
+                            <?= htmlspecialchars($item['name']) ?>
+                        </td>
+
+                        <td>
+                            <?= htmlspecialchars($item['description'] ?? '') ?>
+                        </td>
+
+                        <td>
+                            <span class="badge <?= $item['active']
+                                                    ? 'bg-success'
+                                                    : 'bg-danger' ?>">
+
+                                <?= $item['active']
+                                    ? 'Activa'
+                                    : 'Inactiva' ?>
+
+                            </span>
+                        </td>
+
+                        <td>
+                            <div class="d-flex flex-wrap gap-2">
+
+                                <button
+                                    type="button"
+                                    class="btn btn-warning btn-sm"
+                                    data-bs-toggle="modal"
+                                    data-bs-target="#editCategory<?= (int)$item['id'] ?>">
+                                    Modificar
+                                </button>
+
+                                <button
+                                    type="button"
+                                    class="btn btn-sm <?= $item['active']
+                                                            ? 'btn-danger'
+                                                            : 'btn-success' ?>">
+                                    <?= $item['active']
+                                        ? 'Inactivar'
+                                        : 'Activar' ?>
+                                </button>
+
+                                <?php if ($item['parent_id'] === null): ?>
+
+                                    <a
+                                        href="index.php?page=admincat&parent=<?= (int)$item['id'] ?>"
+                                        class="btn btn-info btn-sm">
+                                        Ver subcategorías
+                                    </a>
+
+                                <?php endif; ?>
+
+                            </div>
+                        </td>
+
+                    </tr>
+
+                <?php } ?>
+
+                <?php if (empty($visibleCategories)) { ?>
+
+                    <tr>
+                        <td colspan="5" class="text-center py-4">
+                            No hay categorías para mostrar.
+                        </td>
+                    </tr>
+
+                <?php } ?>
+
+            </tbody>
+        </table>
+
+    </div>
+
+</section>
 
 
-<?php if (!$categories) {
-?>
-    <h2>No hay categorias cargadas</h2
-        <?php } else { ?>
-        <table class="table">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Nombre</th>
-            <th scope="col">descripción</th>
-            <th scope="col">Activo</th>
-            <th scope="col">Acciones</th>
+<!-- MODAL AGREGAR CATEGORÍA -->
 
-        </tr>
-    </thead>
-    <tbody>
-        <?php
-        foreach ($categories as $cat) {
-        ?>
-            <tr>
-                <th scope="row"><?= $cat['id'] ?></th>
-                <td><?= $cat['name'] ?></td>
-                <td><?= $cat['description'] ?></td>
-                <td><?= $cat['active'] ?></td>
-                <td>
-                    <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $cat['id'] ?>">Editar</button>
+<div class="modal fade"
+    id="addCategoryModal"
+    tabindex="-1"
+    aria-labelledby="addCategoryTitle"
+    aria-hidden="true">
 
-                    <a href="index.php?page=activemodify&id=<?= $cat['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
-                                                                                                                        if ($cat['active']) {
-                                                                                                                            echo "Desactivar";
-                                                                                                                        } else {
-                                                                                                                            echo "Activar";
-                                                                                                                        }
-                                                                                                                        ?></a>
-                    <?php if (!$cat['active']) { ?>
-                        <a href="index.php?page=deleteproduct&id=<?= $cat['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                    <?php } ?>
-                </td>
-            </tr>
-        <?php } ?>
-    </tbody>
-    </table>
-<?php } ?>
-
-<!-- Modal add cat-->
-<div class="modal fade" id="addcatModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addcatModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
+
             <div class="modal-header">
-                <h1 class="modal-title fs-5" id="addProductModalLabel">Añadir Categoría</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <h2 class="modal-title fs-5" id="addCategoryTitle">
+                    Agregar categoría
+                </h2>
+
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Cerrar">
+                </button>
             </div>
+
             <div class="modal-body">
-                <form method="POST" action="includes/process/addCat.php">
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="name" name="name" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="description" class="form-label">Descripción</label>
-                        <input type="text" class="form-control" id="description" name="description" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Aceptar</button>
-                </form>
+
+                <?php
+                $category = [
+                    'parent_id' => $parentId
+                ];
+
+                include 'includes/components/addcategory.php';
+                ?>
+
             </div>
 
         </div>
     </div>
 </div>
 
-<!-- Modal edit cat -->
-<?php
-foreach ($categories as $cat) {
+<!-- MODALES EDITAR CATEGORÍA -->
 
-?>
-    <div class="modal fade" id="editProduct<?= $cat['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="editcatModalLabel" aria-hidden="true">
+<?php foreach ($visibleCategories as $item) { ?>
+
+    <div class="modal fade"
+        id="editCategory<?= (int)$item['id'] ?>"
+        tabindex="-1"
+        aria-labelledby="editCategoryTitle<?= (int)$item['id'] ?>"
+        aria-hidden="true">
+
         <div class="modal-dialog">
             <div class="modal-content">
+
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="addcatModalLabel">Editar categoría <?= $cat['name'] ?></h1>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <h2
+                        class="modal-title fs-5"
+                        id="editCategoryTitle<?= (int)$item['id'] ?>">
+                        Modificar categoría
+                    </h2>
+
+                    <button
+                        type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Cerrar">
+                    </button>
+
                 </div>
+
                 <div class="modal-body">
-                    <form method="POST" action="includes/process/editCat.php">
-                        <div class="mb-3">
-                            <label for="name" class="form-label">Nombre</label>
-                            <input type="text" class="form-control" id="name" name="name" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Descripción</label>
-                            <input type="text" class="form-control" id="description" name="description" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Aceptar</button>
-                    </form>
+
+                    <?php
+                    $category = $item;
+                    include 'includes/components/addcategory.php';
+                    ?>
+
                 </div>
 
             </div>
         </div>
     </div>
+
 <?php } ?>

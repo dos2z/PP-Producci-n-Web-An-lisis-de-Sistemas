@@ -12,8 +12,7 @@ include_once 'conn/db.php';
             type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#addProfileModal"
-        >
+            data-bs-target="#addProfileModal">
             Agregar perfil
         </button>
 
@@ -35,7 +34,7 @@ include_once 'conn/db.php';
 
             <tbody>
 
-                <?php foreach ($profiles as $profile): ?>
+                <?php foreach ($profiles as $profile) { ?>
 
                     <tr>
                         <td><?= $profile['id'] ?></td>
@@ -59,8 +58,8 @@ include_once 'conn/db.php';
 
                         <td>
                             <span class="badge <?= $profile['active']
-                                ? 'bg-success'
-                                : 'bg-danger' ?>">
+                                                    ? 'bg-success'
+                                                    : 'bg-danger' ?>">
 
                                 <?= $profile['active']
                                     ? 'Activo'
@@ -74,17 +73,15 @@ include_once 'conn/db.php';
                                 type="button"
                                 class="btn btn-warning btn-sm"
                                 data-bs-toggle="modal"
-                                data-bs-target="#editProfile<?= $profile['id'] ?>"
-                            >
+                                data-bs-target="#editProfile<?= $profile['id'] ?>">
                                 Modificar
                             </button>
 
                             <button
                                 type="button"
                                 class="btn btn-sm <?= $profile['active']
-                                    ? 'btn-danger'
-                                    : 'btn-success' ?>"
-                            >
+                                                        ? 'btn-danger'
+                                                        : 'btn-success' ?>">
                                 <?= $profile['active']
                                     ? 'Inactivar'
                                     : 'Activar' ?>
@@ -92,7 +89,7 @@ include_once 'conn/db.php';
                         </td>
                     </tr>
 
-                <?php endforeach; ?>
+                <?php } ?>
 
             </tbody>
         </table>
@@ -105,10 +102,10 @@ include_once 'conn/db.php';
 <!-- MODAL AGREGAR PERFIL -->
 
 <div class="modal fade"
-     id="addProfileModal"
-     tabindex="-1"
-     aria-labelledby="addProfileTitle"
-     aria-hidden="true">
+    id="addProfileModal"
+    tabindex="-1"
+    aria-labelledby="addProfileTitle"
+    aria-hidden="true">
 
     <div class="modal-dialog">
         <div class="modal-content">
@@ -129,10 +126,12 @@ include_once 'conn/db.php';
             </div>
 
             <div class="modal-body">
-                <?php
-                $profile = [];
-                include 'includes/components/addprofile.php';
-                ?>
+                <form method="POST" action="includes/process/addProfile.php">
+                    <?php
+                    $profile = [];
+                    include 'includes/components/addprofile.php';
+                    ?>
+                </form>
             </div>
 
         </div>
@@ -142,13 +141,13 @@ include_once 'conn/db.php';
 
 <!-- MODALES EDITAR PERFIL -->
 
-<?php foreach ($profiles as $profile){ ?>
+<?php foreach ($profiles as $profile) { ?>
 
     <div class="modal fade"
-         id="editProfile<?= $profile['id'] ?>"
-         tabindex="-1"
-         aria-labelledby="editProfileTitle<?= $profile['id'] ?>"
-         aria-hidden="true">
+        id="editProfile<?= $profile['id'] ?>"
+        tabindex="-1"
+        aria-labelledby="editProfileTitle<?= $profile['id'] ?>"
+        aria-hidden="true">
 
         <div class="modal-dialog">
             <div class="modal-content">
@@ -170,13 +169,15 @@ include_once 'conn/db.php';
                 </div>
 
                 <div class="modal-body">
-                    <?php
-                    include 'includes/components/addprofile.php';
-                    ?>
+                    <form method="POST" action="includes/process/editProfile.php">
+                        <?php
+                        include 'includes/components/addprofile.php';
+                        ?>
+                    </form>
                 </div>
 
             </div>
         </div>
     </div>
 
-<?php }?>
+<?php } ?>

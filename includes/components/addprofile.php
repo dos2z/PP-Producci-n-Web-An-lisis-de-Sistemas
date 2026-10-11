@@ -14,7 +14,7 @@ $formId = isset($profile['id'])
     : 'add';
 ?>
 
-<form method="POST" action="includes/process/profile.php">
+
 
     <input
         type="hidden"
@@ -72,4 +72,3 @@ $formId = isset($profile['id'])
         Guardar
     </button>
 
-</form>

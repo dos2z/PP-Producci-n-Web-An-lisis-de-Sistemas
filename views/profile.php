@@ -23,7 +23,7 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <form method="POST" action="includes/process/editProduct.php">
+                <form method="POST" action="includes/process/editUser.php">
                     <input type="hidden" value=<?= $_SESSION['id']?> name="id">
                     <?php
                     include "includes/components/adduser.php"

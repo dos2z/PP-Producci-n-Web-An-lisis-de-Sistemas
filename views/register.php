@@ -1,7 +1,23 @@
 <?php
-if (isset($_GET['error'])) {
-    $error = $_GET['error'];
+
+$type = '';
+$message = '';
+
+if (isset($_GET['success'])) {
+    $type = 'success';
+    $message = 'Registro simulado correctamente.';
 }
+
+if (isset($_GET['error'])) {
+    $type = 'danger';
+
+    if ($_GET['error'] === '1') {
+        $message = 'Completá todos los campos correctamente.';
+    } elseif ($_GET['error'] === '2') {
+        $message = 'Las contraseñas no coinciden.';
+    }
+};
+
 ?>
 
 <h1>Registrarse</h1>
@@ -10,9 +26,7 @@ if (isset($_GET['error'])) {
 </div>
 <div class="container my-5 p-5">
 
-    <?php if (isset($error)) {
-        $type = 'danger';
-        $message = 'Ha ocurrido un error, usuario o contraseña incorrecta';
+    <?php if ($message !== '') {
         include 'includes/components/alert.php';
     } ?>
 
@@ -34,6 +48,6 @@ if (isset($_GET['error'])) {
             <input type="password" class="form-control" id="password2" name="password2" required>
         </div>
 
-        <button type="submit" class="btn btn-bg-primary">Ingresar</button>
+        <button type="submit" class="btn btn-primary">Registrarse</button>
     </form>
 </div>
