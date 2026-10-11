@@ -26,7 +26,7 @@ $user = $_SESSION['user'] ?? '';
                 </div>
             </div>
         </a>
-        <a ref="index.php?page=admincategories" type="button" class="btn btn-primary">
+        <a href="index.php?page=admincat" type="button" class="btn btn-primary">
             <div class="card" style="width: 18rem;">
                 <img src="assets/imgs/admincat.png" class="card-img-top" alt="Administrar Categorias">
                 <div class="card-body">

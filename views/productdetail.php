@@ -7,8 +7,14 @@ $product = $products[$index];
 $ranking = 100 * ($product['popularity'] / 5);
 $ranking = round($ranking, 1);
 
-$productReviews = array_filter($reviews, function($review) use ($prodId){
-    return $review['product_id'] == $prodId;})
+
+$productReviews = array_filter(
+    $reviews,
+    function ($review) use ($prodId) {
+        return $review['product_id'] == $prodId
+            && $review['approved'] === true;
+    }
+);
 
 ?>
 <h1>Detalle</h1>
@@ -51,44 +57,44 @@ $productReviews = array_filter($reviews, function($review) use ($prodId){
 
 <!--comentario Producto -->
 <div class="container">
-<div class="justify-content-center m-3">
-    <h2>Calificación</h2>
-    <form method="post" action="includes/process/rankingProduct.php" class="w-50">
-        <div class="mb-3">
-            <label for="name" class="form-label">Nombre</label>
-            <input type="text" class="form-control" id="name" name="name" required>
-        </div>
+    <div class="justify-content-center m-3">
+        <h2>Calificación</h2>
+        <form method="post" action="includes/process/rankingProduct.php" class="w-50">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
 
-        <div class="mb-3">
-            <label for="email" class="form-label">email</label>
-            <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
-        </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">email</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>
+            </div>
 
-        <label for="range3" class="form-label">Valoración</label>
-        <input type="range" class="form-range" min="0" max="5" step="1" id="range3" name="popularity">
+            <label for="range3" class="form-label">Valoración</label>
+            <input type="range" class="form-range" min="1" max="5" step="1" id="range3" name="popularity">
 
-        <div class="mb-3">
-            <label for="message" class="form-label">Comentario</label>
-            <textarea class="form-control" id="message" rows="3" name="message" required></textarea>
-        </div>
-        <input type="hidden" value=<?= $prodId ?> name="id">
+            <div class="mb-3">
+                <label for="message" class="form-label">Comentario</label>
+                <textarea class="form-control" id="message" rows="3" name="message" required></textarea>
+            </div>
+            <input type="hidden" value=<?= $prodId ?> name="id">
 
-        <button type="submit" class="btn btn-bg-primary">Enviar</button>
-    </form>
-</div>
+            <button type="submit" class="btn btn-bg-primary">Enviar</button>
+        </form>
+    </div>
 
-<!--Reseñas-->
-<ul class="list-group">
-  <?php 
-  
-  foreach($productReviews as $review){?>
-    <li class="list-group-item">
-        <div>
-            <p>Calificación: <?=$review['ranking']?> ⭐</p>
-            <p><?=$review['comment']?></p>
-        </div>
-    </li>
-<?php } ?>
-</ul>
+    <!--Reseñas-->
+    <ul class="list-group">
+        <?php
+
+        foreach ($productReviews as $review) { ?>
+            <li class="list-group-item">
+                <div>
+                    <p>Calificación: <?= $review['ranking'] ?> ⭐</p>
+                    <p><?= $review['comment'] ?></p>
+                </div>
+            </li>
+        <?php } ?>
+    </ul>
 
 </div>

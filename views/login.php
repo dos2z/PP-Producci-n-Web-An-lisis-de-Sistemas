@@ -10,9 +10,11 @@ if (isset($_GET['error'])) {
 </div>
 <div class="container my-5 p-5">
 
-    <?php if (isset($error)) { ?><div class="alert alert-danger w-50" role="alert">
-            email o contraseña incorrectos
-        </div> <?php } ?>
+    <?php if (isset($error)) {
+        $type = 'danger';
+        $message = 'Ha ocurrido un error, usuario o contraseña incorrecta';
+        include 'includes/components/alert.php';
+    } ?>
 
     <form method="post" action="includes/process/login.php" class="w-50">
         <div class="mb-3">
@@ -24,6 +26,6 @@ if (isset($_GET['error'])) {
             <input type="password" class="form-control" id="password" name="password" required>
         </div>
 
-        <button type="submit" class="btn btn-bg-primary">Ingresar</button>
+        <button type="submit" class="btn btn-primary">Ingresar</button>
     </form>
 </div>

@@ -4,7 +4,7 @@ $products = [
     [
         'id' => 1,
         'active' => true,
-        'best' => false,
+        'best' => true,
         'name' => 'Paracetamol 500 mg',
         'description' => 'Analgésico y antifebril. Caja de 20 comprimidos.',
         'category' => 'Medicamentos',
@@ -43,7 +43,7 @@ $products = [
     [
         'id' => 4,
         'active' => true,
-        'best' => false,
+        'best' => true,
         'name' => 'Alcohol en Gel 250ml',
         'description' => 'Gel sanitizante para manos con 70% de alcohol. 250 ml.',
         'category' => 'Higiene',
@@ -55,7 +55,7 @@ $products = [
     ],
     [
         'id' => 5,
-        'active' => false,
+        'active' => true,
         'best' => false,
         'name' => 'Multivitamínico',
         'description' => 'Suplemento con vitaminas y minerales. 30 cápsulas.',
@@ -69,7 +69,7 @@ $products = [
     [
         'id' => 6,
         'active' => true,
-        'best' => false,
+        'best' => true,
         'name' => 'Protector Solar FPS 50',
         'description' => 'Protector solar facial y corporal resistente al agua. 200 ml.',
         'category' => 'Cuidado Personal',
@@ -134,7 +134,7 @@ $products = [
     [
         'id' => 11,
         'active' => true,
-        'best' => false,
+        'best' => true,
         'name' => 'Jarabe para la Tos',
         'description' => 'Jarabe para el alivio de la tos seca. Frasco de 120 ml.',
         'category' => 'Medicamentos',
@@ -156,16 +156,98 @@ $products = [
         'price' => 8500.00,
         'stock' => 25,
         'img' => 'cremahidratante'
+    ],
+    [
+        'id' => 13,
+        'active' => true,
+        'best' => true,
+        'name' => 'Agua Micelar',
+        'description' => 'Limpiador facial que elimina maquillaje e impurezas. Envase de 400 ml.',
+        'category' => 'Cuidado Personal',
+        'brand' => 'Garnier',
+        'popularity' => 5,
+        'price' => 12500.00,
+        'stock' => 28,
+        'img' => 'aguamicelar',
+    ],
+    [
+        'id' => 14,
+        'active' => true,
+        'name' => 'Vitamina C 1000 mg',
+        'description' => 'Suplemento de vitamina C. Envase de 30 comprimidos.',
+        'category' => 'Nutrición',
+        'brand' => 'Redoxon',
+        'popularity' => 5,
+        'price' => 14200.00,
+        'stock' => 35,
+        'img' => 'vitaminac',
+        'best' => true
+    ],
+    [
+        'id' => 15,
+        'active' => true,
+        'name' => 'Desodorante Antitranspirante',
+        'description' => 'Desodorante en aerosol con protección de hasta 48 horas. Envase de 150 ml.',
+        'category' => 'Higiene',
+        'brand' => 'Rexona',
+        'popularity' => 5,
+        'price' => 5900.00,
+        'stock' => 45,
+        'img' => 'desodoranterexona',
+        'best' => true
+    ],
+    [
+        'id' => 16,
+        'active' => true,
+        'name' => 'Máscara de Pestañas',
+        'description' => 'Máscara de pestañas negra para aportar volumen y definición.',
+        'category' => 'Maquillaje',
+        'brand' => 'Maybelline',
+        'popularity' => 5,
+        'price' => 15900.00,
+        'stock' => 22,
+        'img' => 'mascarapestanias',
+        'best' => true
     ]
 ];
 
 $categories = [
-    1 => 'Cuidado Personal',
-    2 => 'Medicamentos',
-    3 => 'Maquillaje',
-    4 => 'Higiene',
-    5 => 'Nutrición',
-    6 => 'Otros'
+    [
+        'id' => 1,
+        'name' => 'Cuidado Personal',
+        'description' => 'Productos para el cuidado personal.',
+        'active' => true
+    ],
+    [
+        'id' => 2,
+        'name' => 'Medicamentos',
+        'description' => 'Medicamentos y productos farmacéuticos.',
+        'active' => true
+    ],
+    [
+        'id' => 3,
+        'name' => 'Maquillaje',
+        'description' => 'Productos de maquillaje y belleza.',
+        'active' => true
+    ],
+    [
+        'id' => 4,
+        'name' => 'Higiene',
+        'description' => 'Productos de higiene diaria.',
+        'active' => true
+    ],
+    [
+        'id' => 5,
+        'name' => 'Nutrición',
+        'description' => 'Suplementos y productos nutricionales.',
+        'active' => true
+    ],
+    [
+        'id' => 6,
+        'name' => 'Otros',
+        'description' => 'Otros productos de farmacia.',
+        'active' => false
+    ]
 ];
 
 $messages = [
@@ -282,7 +364,8 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Mariana López',
         'email' => 'mariana.lopez@example.com',
-        'comment' => 'Buen producto, cumplió con mis expectativas.'
+        'comment' => 'Buen producto, cumplió con mis expectativas.',
+        'approved' => true
     ],
     [
         'id' => 2,
@@ -290,17 +373,19 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Carlos Méndez',
         'email' => 'carlos.mendez@example.com',
-        'comment' => 'Excelente atención y entrega rápida.'
+        'comment' => 'Excelente atención y entrega rápida.',
+        'approved' => true
     ],
 
     // Producto 2 - Shampoo (Popularidad: 4)
     [
         'id' => 3,
         'product_id' => 2,
-        'ranking' => 5,
+        'ranking' => 4,
         'name' => 'Lucía Torres',
         'email' => 'lucia.torres@example.com',
-        'comment' => 'Me dejó el cabello suave y con buen aroma.'
+        'comment' => 'Me dejó el cabello suave y con buen aroma.',
+        'approved' => true
     ],
     [
         'id' => 4,
@@ -308,7 +393,8 @@ $reviews = [
         'ranking' => 3,
         'name' => 'Federico Ruiz',
         'email' => 'federico.ruiz@example.com',
-        'comment' => 'Está bien, aunque esperaba mejores resultados.'
+        'comment' => 'Está bien, aunque esperaba mejores resultados.',
+        'approved' => false
     ],
 
     // Producto 3 - Labial (Popularidad: 3)
@@ -318,7 +404,8 @@ $reviews = [
         'ranking' => 4,
         'name' => 'Valentina Pérez',
         'email' => 'valentina.perez@example.com',
-        'comment' => 'Me gustó mucho el color y la textura.'
+        'comment' => 'Me gustó mucho el color y la textura.',
+        'approved' => true
     ],
     [
         'id' => 6,
@@ -326,7 +413,8 @@ $reviews = [
         'ranking' => 2,
         'name' => 'Camila Rodríguez',
         'email' => 'camila.rodriguez@example.com',
-        'comment' => 'El color es lindo, pero no dura demasiado.'
+        'comment' => 'El color es lindo, pero no dura demasiado.',
+        'approved' => true
     ],
 
     // Producto 4 - Alcohol en Gel (Popularidad: 5)
@@ -336,7 +424,8 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Martín González',
         'email' => 'martin.gonzalez@example.com',
-        'comment' => 'Muy práctico y cómodo para llevar.'
+        'comment' => 'Muy práctico y cómodo para llevar.',
+        'approved' => true
     ],
     [
         'id' => 8,
@@ -344,7 +433,8 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Sofía Ramírez',
         'email' => 'sofia.ramirez@example.com',
-        'comment' => 'Buena presentación y excelente precio.'
+        'comment' => 'Buena presentación y excelente precio.',
+        'approved' => true
     ],
 
     // Producto 5 - Multivitamínico (Popularidad: 4)
@@ -354,7 +444,8 @@ $reviews = [
         'ranking' => 4,
         'name' => 'Diego Fernández',
         'email' => 'diego.fernandez@example.com',
-        'comment' => 'Presentación práctica y fácil de incorporar a la rutina.'
+        'comment' => 'Presentación práctica y fácil de incorporar a la rutina.',
+        'approved' => true
     ],
     [
         'id' => 10,
@@ -362,7 +453,8 @@ $reviews = [
         'ranking' => 4,
         'name' => 'Carolina Díaz',
         'email' => 'carolina.diaz@example.com',
-        'comment' => 'Buena relación entre precio y cantidad.'
+        'comment' => 'Buena relación entre precio y cantidad.',
+        'approved' => false
     ],
 
     // Producto 6 - Protector Solar (Popularidad: 5)
@@ -372,7 +464,8 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Florencia Castro',
         'email' => 'florencia.castro@example.com',
-        'comment' => 'Se aplica fácilmente y no deja sensación grasosa.'
+        'comment' => 'Se aplica fácilmente y no deja sensación grasosa.',
+        'approved' => true
     ],
     [
         'id' => 12,
@@ -380,17 +473,19 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Nicolás Herrera',
         'email' => 'nicolas.herrera@example.com',
-        'comment' => 'Excelente textura, lo volvería a comprar.'
+        'comment' => 'Excelente textura, lo volvería a comprar.',
+        'approved' => true
     ],
 
     // Producto 7 - Ibuprofeno (Popularidad: 4)
     [
         'id' => 13,
         'product_id' => 7,
-        'ranking' => 5,
+        'ranking' => 4,
         'name' => 'Pablo Martínez',
         'email' => 'pablo.martinez@example.com',
-        'comment' => 'Producto recibido en perfectas condiciones.'
+        'comment' => 'Producto recibido en perfectas condiciones.',
+        'approved' => true
     ],
     [
         'id' => 14,
@@ -398,7 +493,8 @@ $reviews = [
         'ranking' => 3,
         'name' => 'Laura Sánchez',
         'email' => 'laura.sanchez@example.com',
-        'comment' => 'El producto está bien, pero el envío demoró más de lo esperado.'
+        'comment' => 'El producto está bien, pero el envío demoró más de lo esperado.',
+        'approved' => false
     ],
 
     // Producto 8 - Pasta Dental (Popularidad: 3)
@@ -408,7 +504,8 @@ $reviews = [
         'ranking' => 4,
         'name' => 'Andrés Molina',
         'email' => 'andres.molina@example.com',
-        'comment' => 'Buen sabor y sensación de limpieza.'
+        'comment' => 'Buen sabor y sensación de limpieza.',
+        'approved' => true
     ],
     [
         'id' => 16,
@@ -416,17 +513,19 @@ $reviews = [
         'ranking' => 2,
         'name' => 'Julieta Romero',
         'email' => 'julieta.romero@example.com',
-        'comment' => 'No me gustó demasiado el sabor.'
+        'comment' => 'No me gustó demasiado el sabor.',
+        'approved' => true
     ],
 
     // Producto 9 - Termómetro Digital (Popularidad: 2)
     [
         'id' => 17,
         'product_id' => 9,
-        'ranking' => 3,
+        'ranking' => 2,
         'name' => 'Sebastián Vega',
         'email' => 'sebastian.vega@example.com',
-        'comment' => 'Funciona correctamente, aunque tarda un poco en medir.'
+        'comment' => 'Funciona correctamente, aunque tarda un poco en medir.',
+        'approved' => true
     ],
     [
         'id' => 18,
@@ -434,7 +533,8 @@ $reviews = [
         'ranking' => 1,
         'name' => 'Agustina Morales',
         'email' => 'agustina.morales@example.com',
-        'comment' => 'La pantalla es pequeña y resulta difícil de leer.'
+        'comment' => 'La pantalla es pequeña y resulta difícil de leer.',
+        'approved' => false
     ],
 
     // Producto 10 - Proteína en Polvo (Popularidad: 3)
@@ -444,7 +544,8 @@ $reviews = [
         'ranking' => 4,
         'name' => 'Matías Acosta',
         'email' => 'matias.acosta@example.com',
-        'comment' => 'Buen sabor y se mezcla fácilmente con agua.'
+        'comment' => 'Buen sabor y se mezcla fácilmente con agua.',
+        'approved' => true
     ],
     [
         'id' => 20,
@@ -452,17 +553,19 @@ $reviews = [
         'ranking' => 2,
         'name' => 'Daniela Ortiz',
         'email' => 'daniela.ortiz@example.com',
-        'comment' => 'El sabor es demasiado dulce para mi gusto.'
+        'comment' => 'El sabor es demasiado dulce para mi gusto.',
+        'approved' => true
     ],
 
     // Producto 11 - Jarabe para la Tos (Popularidad: 4)
     [
         'id' => 21,
         'product_id' => 11,
-        'ranking' => 5,
+        'ranking' => 4,
         'name' => 'Ricardo Silva',
         'email' => 'ricardo.silva@example.com',
-        'comment' => 'Llegó bien embalado y dentro del plazo indicado.'
+        'comment' => 'Llegó bien embalado y dentro del plazo indicado.',
+        'approved' => true
     ],
     [
         'id' => 22,
@@ -470,7 +573,8 @@ $reviews = [
         'ranking' => 3,
         'name' => 'Natalia Gómez',
         'email' => 'natalia.gomez@example.com',
-        'comment' => 'La presentación es práctica, aunque el sabor no me gustó.'
+        'comment' => 'La presentación es práctica, aunque el sabor no me gustó.',
+        'approved' => false
     ],
 
     // Producto 12 - Crema Hidratante (Popularidad: 4)
@@ -480,7 +584,8 @@ $reviews = [
         'ranking' => 5,
         'name' => 'Paula Benítez',
         'email' => 'paula.benitez@example.com',
-        'comment' => 'Me gusta mucho su textura y cómo deja la piel.'
+        'comment' => 'Me gusta mucho su textura y cómo deja la piel.',
+        'approved' => true
     ],
     [
         'id' => 24,
@@ -488,6 +593,131 @@ $reviews = [
         'ranking' => 3,
         'name' => 'Emilia Vargas',
         'email' => 'emilia.vargas@example.com',
-        'comment' => 'Hidrata bien, pero tarda bastante en absorberse.'
+        'comment' => 'Hidrata bien, pero tarda bastante en absorberse.',
+        'approved' => true
+    ],
+    // Producto 13 - Agua Micelar (Popularidad: 5)
+    [
+        'id' => 25,
+        'product_id' => 13,
+        'ranking' => 5,
+        'name' => 'María Belén Suárez',
+        'email' => 'mariabelen.suarez@example.com',
+        'comment' => 'Limpia muy bien la piel sin dejar sensación grasosa. Ideal para usar todos los días.',
+        'approved' => true
+    ],
+    [
+        'id' => 26,
+        'product_id' => 13,
+        'ranking' => 5,
+        'name' => 'Luciana Herrera',
+        'email' => 'luciana.herrera@example.com',
+        'comment' => 'Retira el maquillaje fácilmente y no me irrita la piel. Excelente producto.',
+        'approved' => true
+    ],
+
+    // Producto 14 - Vitamina C (Popularidad: 5)
+    [
+        'id' => 27,
+        'product_id' => 14,
+        'ranking' => 5,
+        'name' => 'Fernando Castro',
+        'email' => 'fernando.castro@example.com',
+        'comment' => 'Buena presentación y excelente relación entre precio y cantidad.',
+        'approved' => true
+    ],
+    [
+        'id' => 28,
+        'product_id' => 14,
+        'ranking' => 5,
+        'name' => 'Gabriela Molina',
+        'email' => 'gabriela.molina@example.com',
+        'comment' => 'Los comprimidos son fáciles de tomar y el producto llegó en perfectas condiciones.',
+        'approved' => true
+    ],
+
+    // Producto 15 - Desodorante Antitranspirante (Popularidad: 5)
+    [
+        'id' => 29,
+        'product_id' => 15,
+        'ranking' => 5,
+        'name' => 'Javier Ríos',
+        'email' => 'javier.rios@example.com',
+        'comment' => 'Muy buena protección durante el día y tiene un aroma agradable.',
+        'approved' => true
+    ],
+    [
+        'id' => 30,
+        'product_id' => 15,
+        'ranking' => 5,
+        'name' => 'Paula Fernández',
+        'email' => 'paula.fernandez@example.com',
+        'comment' => 'Me gustó mucho, seca rápido y no deja residuos en la ropa.',
+        'approved' => true
+    ],
+
+    // Producto 16 - Máscara de Pestañas (Popularidad: 5)
+    [
+        'id' => 31,
+        'product_id' => 16,
+        'ranking' => 5,
+        'name' => 'Julieta Navarro',
+        'email' => 'julieta.navarro@example.com',
+        'comment' => 'Da mucho volumen y separa muy bien las pestañas. La volvería a comprar.',
+        'approved' => true
+    ],
+    [
+        'id' => 32,
+        'product_id' => 16,
+        'ranking' => 5,
+        'name' => 'Rocío Benítez',
+        'email' => 'rocio.benitez@example.com',
+        'comment' => 'Excelente duración, no se corre y es fácil de aplicar.',
+        'approved' => true
+    ]
+];
+
+$brands = [
+    [
+        'id' => 1,
+        'name' => 'Garnier',
+        'active' => true
+    ],
+    [
+        'id' => 2,
+        'name' => 'Redoxon',
+        'active' => true
+    ],
+    [
+        'id' => 3,
+        'name' => 'Nivea',
+        'active' => true
+    ],
+    [
+        'id' => 4,
+        'name' => 'Dermaglós',
+        'active' => false
+    ]
+];
+
+$profiles = [
+    [
+        'id' => 1,
+        'name' => 'Administrador',
+        'active' => true,
+        'permissions' => [
+            'products',
+            'categories',
+            'brands',
+            'reviews',
+            'users',
+            'profiles'
+        ]
+    ],
+    [
+        'id' => 2,
+        'name' => 'Usuario',
+        'active' => true,
+        'permissions' => []
     ]
 ];

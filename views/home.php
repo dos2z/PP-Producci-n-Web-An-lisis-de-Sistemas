@@ -1,17 +1,18 @@
 <?php
-if(isset($_SESSION['user']) && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === true) {
+if (isset($_SESSION['user']) && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === true) {
     header("Location: index.php?page=adminpanel");
-
 }
+$featuredOnly = true;
+$orderBy = 'popularity';
 $limit = 6;
-$orderBy = "popularity";
-include_once 'includes/process/getProducts.php';
+
+include 'includes/process/getProducts.php';
 $user = $_SESSION['user'] ?? '';
 ?>
 
 
 <h1>Bienvenido!!!</h1>
-<section class = "container">
+<section class="container">
     <h2>Productos Destacados</h2>
     <div class="row">
         <?php

@@ -90,6 +90,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
             <div class="modal-body">
                 <form method="POST" action="includes/process/addUser.php">
                     <?php
+                    $edit = false;
                     include "includes/components/adduser.php"
                     ?>
                     <input class="form-check-input" type="checkbox" value="" id="checkChecked" name="admin">
@@ -103,7 +104,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     </div>
 </div>
 
-<!-- Modal edit prod -->
+<!-- Modal edit usuario -->
 <?php
 foreach ($users as $user) {
 
@@ -116,9 +117,10 @@ foreach ($users as $user) {
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" action="includes/process/editProduct.php">
+                    <form method="POST" action="includes/process/editUser.php">
                         <input type="hidden" value=<?= $user['id'] ?> name="id">
                         <?php
+                        $edit = true;
                         include "includes/components/adduser.php"
                         ?>
                     </form>

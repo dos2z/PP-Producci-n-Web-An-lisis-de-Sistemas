@@ -1,18 +1,23 @@
 <h1>Contacto</h1>
-<?php if (isset($_GET['success'])) { ?>
-    <div class="alert alert-success w-50" role="success">
-        Mensaje enviado coorectamente, Nos contactaremos con usted a la brevedad
-    </div>
 
-<?php } ?>
-<?php if (isset($_GET['error'])) { ?>
-    <div class="alert alert-danger w-50" role="danger">
-        Ha ocurrido un problema, por favor intente nuevamente
-    </div>
 
-<?php } ?>
 
 <div class="container my-5 p-5">
+    <div>
+
+        <?php
+        if (isset($_GET['success'])) {
+            $type = 'success';
+            $message = 'Mensaje enviado correctamente.';
+
+            include 'includes/components/alert.php';
+        } ?>
+        <?php if (isset($_GET['error'])) {
+            $type = 'danger';
+            $message = 'Ha ocurrido un error, intente más tarde.';
+            include 'includes/components/alert.php';
+        } ?>
+    </div>
 
     <form method="post" action="includes/process/contact.php" class="w-50">
         <div class="mb-3">

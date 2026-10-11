@@ -12,14 +12,15 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
     Agregar Producto
 </button>
+<a href="index.php?page=reviewsproduct" class="btn btn-sm btn-primary">Reseñas</a>
 
 <form method="POST" action="includes/process/getProducts.php" class="my-3 d-flex gap-3">
     <div class="mb-3 w-25">
         <select class="form-select" name="category" id="category">
             <option selected value="0">Categoría</option>
             <?php
-            foreach ($categories as $id => $category) {
-                echo "<option value='$id'>$category</option>";
+            foreach ($categories as $cat) {
+                echo "<option value=" . $cat['id'] . ">" . $cat['name'] . "</option>";
             }
             ?>
         </select>
@@ -73,7 +74,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                 <td><?= $product['price'] ?></td>
                 <td><?= $product['stock'] ?></td>
                 <td><?= $product['popularity'] ?>⭐</td>
-                <td><?= $product['best'] ?></td>
+                <td><?php if ($product['best']) echo "si ✪" ?></td>
                 <td><?= $product['active'] ?></td>
                 <td>
                     <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $product['id'] ?>">Editar</button>
@@ -106,6 +107,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
             <div class="modal-body">
                 <form method="POST" action="includes/process/addProduct.php">
                     <?php
+                    $edit = false;
                     include "includes/components/addproduct.php"
                     ?>
                 </form>
@@ -131,6 +133,7 @@ foreach ($products as $product) {
                     <form method="POST" action="includes/process/editProduct.php">
                         <input type="hidden" value=<?= $product['id'] ?> name="id">
                         <?php
+                        $edit = true;
                         include "includes/components/addproduct.php"
                         ?>
                     </form>

@@ -5,12 +5,30 @@ $index = array_search($prodId, array_column($products, 'id'));
 $product = $products[$index];
 $ranking = 100 * ($product['popularity'] / 5);
 $ranking = round($ranking, 1);
-$productReviews = array_filter($reviews, function ($review) use ($prodId) {
-    return $review['product_id'] == $prodId;
-})
+if (!$prodId) {
+    $productReviews = $reviews;
+} else {
+    $productReviews = array_filter($reviews, function ($review) use ($prodId) {
+        return $review['product_id'] == $prodId;
+    });
+};
 ?>
 <a href="index.php?page=adminproducts" type="button" class="btn btn-primary">◄ Volver a Productos</a>
 <h1>Reviews de producto <?= $product['name'] ?></h1>
+<form>
+    <div class="mb-3 w-25">
+        <select class="form-select" name="orderBy" id="orderBy">
+            <option selected value="0">Ordenar por</option>
+            <option value="1">Producto</option>
+            <option value="2">Fecha</option>
+            <option value="5">Valor</option>
+            <option value="3">A-Z</option>
+            <option value="4">Z-A</option>
+        </select>
+
+    </div>
+    <button type="submit" class="btn btn-outline-primary">Ordenar</button>
+</form>
 
 <div class="progress my-5" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar bg-warning bold" style="width: <?= $ranking ?>%"><?= $product['popularity'] ?? 0 ?></div>
@@ -23,14 +41,17 @@ $productReviews = array_filter($reviews, function ($review) use ($prodId) {
             <li class="list-group-item">
                 <div class="d-f ">
                     <div>
-                        <p>Calificación: <?= $review['ranking'] ?> ⭐</p>
-                        <p><?= $review['name'] ?></p>
-                        <p><?= $review['email'] ?></p>
-                        <p><?= $review['comment'] ?></p>
+                        <span>Calificación: <?= $review['ranking'] ?> ⭐</span>
+                        <span class="badge <?= $review['approved'] ? "text-bg-success" : "text-bg-danger" ?>"> <?= $review['approved'] ? "Aprobada" : "Pendiente" ?></span>
+                        <span>Fecha: <?= $review['date'] ?? "Sin fecha" ?></span>
                     </div>
+                    <p><?= $review['name'] ?></p>
+                    <p><?= $review['email'] ?></p>
+                    <p><?= $review['comment'] ?></p>
                     <div>
+                        <?php if (!$review['approved']) { ?><a href="index.php?page=aprovereview&id=<?= $review['id'] ?>" class="btn btn-sm btn-outline-success">Aprobar</a><?php } ?>
                         <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#answerreview<?= $review['id'] ?>">Responder</button>
-                        <a href="index.php?page=deleteproduct&id=<?= $review['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                        <a href="index.php?page=deletereview&id=<?= $review['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
 
                     </div>
 

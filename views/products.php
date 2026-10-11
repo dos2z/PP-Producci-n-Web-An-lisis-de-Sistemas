@@ -1,18 +1,22 @@
 <?php
-include_once 'includes/process/getProducts.php';
+$categoryId = $_GET['category'] ?? null;
+$brand = $_GET['brand'] ?? null;
+$orderBy = $_GET['order'] ?? null;
+
+include 'includes/process/getProducts.php';
 include_once 'includes/process/getCategories.php';
 
-//$products = [];
+
 ?>
 <h1>Productos</h1>
 
-<form method="POST" action="includes/process/getProducts.php">
+<form method="GET" action="index.php?page=products">
     <div class="mb-3 w-25">
         <select class="form-select" name="category" id="category">
             <option selected value="0">Categoría</option>
             <?php
-            foreach ($categories as $id => $category) {
-                echo "<option value='$id'>$category</option>";
+            foreach ($categories as $cat) {
+                echo "<option value=".$cat['id'].">".$cat['name']."</option>";
             }
             ?>
         </select>

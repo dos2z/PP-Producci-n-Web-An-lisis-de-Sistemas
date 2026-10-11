@@ -25,19 +25,25 @@ $page = $_GET["page"] ?? "home";
 </head>
 
 <body>
-    <?php
-    require_once './includes/components/header.php';
-    ?>
-    <main class="container my-5">
+    <header>
         <?php
-       
-        if (file_exists("views/$page.php")) {
-            require_once "views/$page.php";
-        } else {
-            require_once "views/error404.php";
+
+        require_once './includes/components/nav.php';
+        if (isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] === true && $page != "adminpanel") {
+            require_once './includes/components/adminnav.php';
         }
         ?>
+        <main class="container my-5">
+            <?php
 
+
+            if (file_exists("views/$page.php")) {
+                require_once "views/$page.php";
+            } else {
+                require_once "views/error404.php";
+            }
+            ?>
+    </header>
     </main>
     <?php
     require_once './includes/components/footer.php';

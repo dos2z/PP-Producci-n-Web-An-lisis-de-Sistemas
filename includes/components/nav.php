@@ -1,8 +1,4 @@
-<?php
 
-?>
-
-<header>
 
 
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -18,7 +14,7 @@
                     <?php
                     if (isset($_SESSION['user']) && isset($_SESSION['isAdmin']) && $_SESSION['isAdmin'] == true) {
                     ?>
-                        <a class="nav-link <?php if ($_GET['page'] === 'profile') echo 'active'; ?>" href="index.php?page=adminpanel">Administrar</a>
+                        <a class="nav-link <?php if ($_GET['page'] === 'adminpanel') echo 'active'; ?>" href="index.php?page=adminpanel">Administrar</a>
                     <?php } else { ?>
                         <a class="nav-link <?php if ($_GET['page'] === 'products') echo 'active'; ?>" href="index.php?page=products">Productos</a>
                         <a class="nav-link <?php if ($_GET['page'] === 'contact') echo 'active'; ?>" href="index.php?page=contact">Contacto</a>
@@ -41,5 +37,3 @@
             </div>
         </div>
     </nav>
-
-</header>
