@@ -29,9 +29,11 @@
         </div>
         <select class="form-select" aria-label="Default select example">
             <option selected>Area</option>
-            <option value="1">Ventas</option>
-            <option value="2">Recursos Humanos</option>
-            <option value="3">Administración</option>
+            <option value="1">Atención al cliente</option>
+            <option value="2">Conuslta de productos</option>
+            <option value="3">Ventas</option>
+            <option value="4">Recursos Humanos</option>
+            <option value="5">Administración</option>
         </select>
         <div class="mb-3">
             <label for="message" class="form-label">Mensaje</label>

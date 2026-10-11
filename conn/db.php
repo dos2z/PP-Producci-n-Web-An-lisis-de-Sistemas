@@ -168,6 +168,81 @@ $categories = [
     6 => 'Otros'
 ];
 
+$messages = [
+    [
+        'id' => 1,
+        'content' => 'Hola, quería consultar si tienen disponible protector solar FPS 50 y si realizan envíos a domicilio.',
+        'name' => 'Lucía Fernández',
+        'email' => 'lucia.fernandez@example.com',
+        'phone' => '2944123456',
+        'Area' => 'Consulta de Productos',
+        'read' => false
+    ],
+    [
+        'id' => 2,
+        'content' => 'Buenas tardes, quisiera saber cuáles son los horarios de atención durante los fines de semana.',
+        'name' => 'Martín González',
+        'email' => 'martin.gonzalez@example.com',
+        'phone' => '2944234567',
+        'Area' => 'Atención al Cliente',
+        'read' => true
+    ],
+    [
+        'id' => 3,
+        'content' => 'Necesito consultar si tienen stock de ibuprofeno de 400 mg y cuál es su precio actual.',
+        'name' => 'Carolina López',
+        'email' => 'carolina.lopez@example.com',
+        'phone' => '2944345678',
+        'Area' => 'Consulta de Productos',
+        'read' => false
+    ],
+    [
+        'id' => 4,
+        'content' => 'Realicé una compra hace dos días y todavía no recibí mi pedido. ¿Podrían verificar el estado del envío?',
+        'name' => 'Diego Martínez',
+        'email' => 'diego.martinez@example.com',
+        'phone' => '2944456789',
+        'Area' => 'Ventas',
+        'read' => false
+    ],
+    [
+        'id' => 5,
+        'content' => 'Quería saber si aceptan obras sociales y qué documentación necesito presentar para obtener descuentos.',
+        'name' => 'Valentina Rodríguez',
+        'email' => 'valentina.rodriguez@example.com',
+        'phone' => '2944567890',
+        'Area' => 'Administración',
+        'read' => true
+    ],
+    [
+        'id' => 6,
+        'content' => 'Compré una crema hidratante, pero el envase llegó dañado. Quisiera solicitar un cambio.',
+        'name' => 'Sofía Ramírez',
+        'email' => 'sofia.ramirez@example.com',
+        'phone' => '2944678901',
+        'Area' => 'Atención al Cliente',
+        'read' => false
+    ],
+    [
+        'id' => 7,
+        'content' => 'Hola, quisiera consultar si tienen promociones en productos de higiene personal y maquillaje.',
+        'name' => 'Federico Torres',
+        'email' => 'federico.torres@example.com',
+        'phone' => '2944789012',
+        'Area' => 'Ventas',
+        'read' => true
+    ],
+    [
+        'id' => 8,
+        'content' => 'Buenos días, estoy interesado en trabajar en su farmacia. Soy estudiante de Farmacia y quisiera saber si están recibiendo currículums.',
+        'name' => 'Camila Pérez',
+        'email' => 'camila.perez@example.com',
+        'phone' => '2944890123',
+        'Area' => 'Recursos Humanos',
+        'read' => false
+    ]
+];
+
 $users = [
     [
         'id' => 1,
