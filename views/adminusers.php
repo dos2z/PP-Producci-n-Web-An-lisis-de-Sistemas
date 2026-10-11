@@ -9,11 +9,11 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
 ?>
 <!-- Button trigger modal -->
 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addUserModal">
-    Añadir  Ususario
+    Añadir Ususario
 </button>
 
 <form method="POST" action="includes/process/getProducts.php" class="my-3 d-flex gap-3">
-    
+
     <div class="mb-3 w-25">
         <select class="form-select" name="orderBy" id="orderBy">
             <option selected value="0">Ordenar por</option>
@@ -53,7 +53,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
         ?>
             <tr>
                 <th scope="row"><?= $user['id'] ?></th>
-                <td><?= $user['name'] ?></td>              
+                <td><?= $user['name'] ?></td>
                 <td><?= $user['email'] ?></td>
                 <td><?= $user['password'] ?></td>
                 <td><?= $user['admin'] ?></td>
@@ -63,12 +63,12 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                     <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $user['id'] ?>">Editar</button>
                     <a href="index.php?page=reviewsproduct&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-info">Reseñas</a>
                     <a href="index.php?page=activemodify&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
-                                                                                                                            if ($user['active']) {
-                                                                                                                                echo "Desactivar";
-                                                                                                                            } else {
-                                                                                                                                echo "Activar";
-                                                                                                                            }
-                                                                                                                            ?></a>
+                                                                                                                        if ($user['active']) {
+                                                                                                                            echo "Desactivar";
+                                                                                                                        } else {
+                                                                                                                            echo "Activar";
+                                                                                                                        }
+                                                                                                                        ?></a>
                     <?php if (!$user['active']) { ?>
                         <a href="index.php?page=deleteproduct&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
                     <?php } ?>
@@ -79,7 +79,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     </table>
 <?php } ?>
 
-<!-- Modal add Prod-->
+<!-- Modal add User-->
 <div class="modal fade" id="addUserModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="addUserModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -92,6 +92,10 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                     <?php
                     include "includes/components/adduser.php"
                     ?>
+                    <input class="form-check-input" type="checkbox" value="" id="checkChecked" name="admin">
+                    <label class="form-check-label" for="checkChecked">
+                        Es Admin
+                    </label>
                 </form>
             </div>
 

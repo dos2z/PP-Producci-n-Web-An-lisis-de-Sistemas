@@ -4,6 +4,7 @@ session_start();
 
 $page = $_GET["page"] ?? "home";
 
+
 ?>
 
 <!DOCTYPE html>
