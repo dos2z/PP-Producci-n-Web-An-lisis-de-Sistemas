@@ -176,7 +176,8 @@ $messages = [
         'email' => 'lucia.fernandez@example.com',
         'phone' => '2944123456',
         'Area' => 'Consulta de Productos',
-        'read' => false
+        'read' => false,
+        'created_at' => '2026-10-10 14:35:00'
     ],
     [
         'id' => 2,
@@ -185,7 +186,8 @@ $messages = [
         'email' => 'martin.gonzalez@example.com',
         'phone' => '2944234567',
         'Area' => 'Atención al Cliente',
-        'read' => true
+        'read' => true,
+        'created_at' => '2026-10-09 09:20:00'
     ],
     [
         'id' => 3,
@@ -194,7 +196,8 @@ $messages = [
         'email' => 'carolina.lopez@example.com',
         'phone' => '2944345678',
         'Area' => 'Consulta de Productos',
-        'read' => false
+        'read' => false,
+        'created_at' => '2026-10-10 11:45:00'
     ],
     [
         'id' => 4,
@@ -203,7 +206,8 @@ $messages = [
         'email' => 'diego.martinez@example.com',
         'phone' => '2944456789',
         'Area' => 'Ventas',
-        'read' => false
+        'read' => false,
+        'created_at' => '2026-10-08 16:10:00'
     ],
     [
         'id' => 5,
@@ -212,7 +216,8 @@ $messages = [
         'email' => 'valentina.rodriguez@example.com',
         'phone' => '2944567890',
         'Area' => 'Administración',
-        'read' => true
+        'read' => true,
+        'created_at' => '2026-10-07 10:30:00'
     ],
     [
         'id' => 6,
@@ -221,7 +226,8 @@ $messages = [
         'email' => 'sofia.ramirez@example.com',
         'phone' => '2944678901',
         'Area' => 'Atención al Cliente',
-        'read' => false
+        'read' => false,
+        'created_at' => '2026-10-09 17:25:00'
     ],
     [
         'id' => 7,
@@ -230,7 +236,8 @@ $messages = [
         'email' => 'federico.torres@example.com',
         'phone' => '2944789012',
         'Area' => 'Ventas',
-        'read' => true
+        'read' => true,
+        'created_at' => '2026-10-06 12:15:00'
     ],
     [
         'id' => 8,
@@ -239,7 +246,8 @@ $messages = [
         'email' => 'camila.perez@example.com',
         'phone' => '2944890123',
         'Area' => 'Recursos Humanos',
-        'read' => false
+        'read' => false,
+        'created_at' => '2026-10-10 18:40:00'
     ]
 ];
 
@@ -262,5 +270,224 @@ $users = [
         'active' => true,
         'date' => "10/10/26"
 
+    ]
+];
+
+
+$reviews = [
+    // Producto 1 - Paracetamol (Popularidad: 5)
+    [
+        'id' => 1,
+        'product_id' => 1,
+        'ranking' => 5,
+        'name' => 'Mariana López',
+        'email' => 'mariana.lopez@example.com',
+        'comment' => 'Buen producto, cumplió con mis expectativas.'
+    ],
+    [
+        'id' => 2,
+        'product_id' => 1,
+        'ranking' => 5,
+        'name' => 'Carlos Méndez',
+        'email' => 'carlos.mendez@example.com',
+        'comment' => 'Excelente atención y entrega rápida.'
+    ],
+
+    // Producto 2 - Shampoo (Popularidad: 4)
+    [
+        'id' => 3,
+        'product_id' => 2,
+        'ranking' => 5,
+        'name' => 'Lucía Torres',
+        'email' => 'lucia.torres@example.com',
+        'comment' => 'Me dejó el cabello suave y con buen aroma.'
+    ],
+    [
+        'id' => 4,
+        'product_id' => 2,
+        'ranking' => 3,
+        'name' => 'Federico Ruiz',
+        'email' => 'federico.ruiz@example.com',
+        'comment' => 'Está bien, aunque esperaba mejores resultados.'
+    ],
+
+    // Producto 3 - Labial (Popularidad: 3)
+    [
+        'id' => 5,
+        'product_id' => 3,
+        'ranking' => 4,
+        'name' => 'Valentina Pérez',
+        'email' => 'valentina.perez@example.com',
+        'comment' => 'Me gustó mucho el color y la textura.'
+    ],
+    [
+        'id' => 6,
+        'product_id' => 3,
+        'ranking' => 2,
+        'name' => 'Camila Rodríguez',
+        'email' => 'camila.rodriguez@example.com',
+        'comment' => 'El color es lindo, pero no dura demasiado.'
+    ],
+
+    // Producto 4 - Alcohol en Gel (Popularidad: 5)
+    [
+        'id' => 7,
+        'product_id' => 4,
+        'ranking' => 5,
+        'name' => 'Martín González',
+        'email' => 'martin.gonzalez@example.com',
+        'comment' => 'Muy práctico y cómodo para llevar.'
+    ],
+    [
+        'id' => 8,
+        'product_id' => 4,
+        'ranking' => 5,
+        'name' => 'Sofía Ramírez',
+        'email' => 'sofia.ramirez@example.com',
+        'comment' => 'Buena presentación y excelente precio.'
+    ],
+
+    // Producto 5 - Multivitamínico (Popularidad: 4)
+    [
+        'id' => 9,
+        'product_id' => 5,
+        'ranking' => 4,
+        'name' => 'Diego Fernández',
+        'email' => 'diego.fernandez@example.com',
+        'comment' => 'Presentación práctica y fácil de incorporar a la rutina.'
+    ],
+    [
+        'id' => 10,
+        'product_id' => 5,
+        'ranking' => 4,
+        'name' => 'Carolina Díaz',
+        'email' => 'carolina.diaz@example.com',
+        'comment' => 'Buena relación entre precio y cantidad.'
+    ],
+
+    // Producto 6 - Protector Solar (Popularidad: 5)
+    [
+        'id' => 11,
+        'product_id' => 6,
+        'ranking' => 5,
+        'name' => 'Florencia Castro',
+        'email' => 'florencia.castro@example.com',
+        'comment' => 'Se aplica fácilmente y no deja sensación grasosa.'
+    ],
+    [
+        'id' => 12,
+        'product_id' => 6,
+        'ranking' => 5,
+        'name' => 'Nicolás Herrera',
+        'email' => 'nicolas.herrera@example.com',
+        'comment' => 'Excelente textura, lo volvería a comprar.'
+    ],
+
+    // Producto 7 - Ibuprofeno (Popularidad: 4)
+    [
+        'id' => 13,
+        'product_id' => 7,
+        'ranking' => 5,
+        'name' => 'Pablo Martínez',
+        'email' => 'pablo.martinez@example.com',
+        'comment' => 'Producto recibido en perfectas condiciones.'
+    ],
+    [
+        'id' => 14,
+        'product_id' => 7,
+        'ranking' => 3,
+        'name' => 'Laura Sánchez',
+        'email' => 'laura.sanchez@example.com',
+        'comment' => 'El producto está bien, pero el envío demoró más de lo esperado.'
+    ],
+
+    // Producto 8 - Pasta Dental (Popularidad: 3)
+    [
+        'id' => 15,
+        'product_id' => 8,
+        'ranking' => 4,
+        'name' => 'Andrés Molina',
+        'email' => 'andres.molina@example.com',
+        'comment' => 'Buen sabor y sensación de limpieza.'
+    ],
+    [
+        'id' => 16,
+        'product_id' => 8,
+        'ranking' => 2,
+        'name' => 'Julieta Romero',
+        'email' => 'julieta.romero@example.com',
+        'comment' => 'No me gustó demasiado el sabor.'
+    ],
+
+    // Producto 9 - Termómetro Digital (Popularidad: 2)
+    [
+        'id' => 17,
+        'product_id' => 9,
+        'ranking' => 3,
+        'name' => 'Sebastián Vega',
+        'email' => 'sebastian.vega@example.com',
+        'comment' => 'Funciona correctamente, aunque tarda un poco en medir.'
+    ],
+    [
+        'id' => 18,
+        'product_id' => 9,
+        'ranking' => 1,
+        'name' => 'Agustina Morales',
+        'email' => 'agustina.morales@example.com',
+        'comment' => 'La pantalla es pequeña y resulta difícil de leer.'
+    ],
+
+    // Producto 10 - Proteína en Polvo (Popularidad: 3)
+    [
+        'id' => 19,
+        'product_id' => 10,
+        'ranking' => 4,
+        'name' => 'Matías Acosta',
+        'email' => 'matias.acosta@example.com',
+        'comment' => 'Buen sabor y se mezcla fácilmente con agua.'
+    ],
+    [
+        'id' => 20,
+        'product_id' => 10,
+        'ranking' => 2,
+        'name' => 'Daniela Ortiz',
+        'email' => 'daniela.ortiz@example.com',
+        'comment' => 'El sabor es demasiado dulce para mi gusto.'
+    ],
+
+    // Producto 11 - Jarabe para la Tos (Popularidad: 4)
+    [
+        'id' => 21,
+        'product_id' => 11,
+        'ranking' => 5,
+        'name' => 'Ricardo Silva',
+        'email' => 'ricardo.silva@example.com',
+        'comment' => 'Llegó bien embalado y dentro del plazo indicado.'
+    ],
+    [
+        'id' => 22,
+        'product_id' => 11,
+        'ranking' => 3,
+        'name' => 'Natalia Gómez',
+        'email' => 'natalia.gomez@example.com',
+        'comment' => 'La presentación es práctica, aunque el sabor no me gustó.'
+    ],
+
+    // Producto 12 - Crema Hidratante (Popularidad: 4)
+    [
+        'id' => 23,
+        'product_id' => 12,
+        'ranking' => 5,
+        'name' => 'Paula Benítez',
+        'email' => 'paula.benitez@example.com',
+        'comment' => 'Me gusta mucho su textura y cómo deja la piel.'
+    ],
+    [
+        'id' => 24,
+        'product_id' => 12,
+        'ranking' => 3,
+        'name' => 'Emilia Vargas',
+        'email' => 'emilia.vargas@example.com',
+        'comment' => 'Hidrata bien, pero tarda bastante en absorberse.'
     ]
 ];

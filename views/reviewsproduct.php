@@ -5,10 +5,68 @@ $index = array_search($prodId, array_column($products, 'id'));
 $product = $products[$index];
 $ranking = 100 * ($product['popularity'] / 5);
 $ranking = round($ranking, 1);
+$productReviews = array_filter($reviews, function ($review) use ($prodId) {
+    return $review['product_id'] == $prodId;
+})
 ?>
 
 <h1>Reviews de producto <?= $product['name'] ?></h1>
 
-<div class="progress" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">
+<div class="progress my-5" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">
     <div class="progress-bar bg-warning bold" style="width: <?= $ranking ?>%"><?= $product['popularity'] ?? 0 ?></div>
 </div>
+<div class="container">
+    <ul class="list-group">
+        <?php
+
+        foreach ($productReviews as $review) { ?>
+            <li class="list-group-item">
+                <div class="d-f ">
+                    <div>
+                        <p>Calificación: <?= $review['ranking'] ?> ⭐</p>
+                        <p><?= $review['name'] ?></p>
+                        <p><?= $review['email'] ?></p>
+                        <p><?= $review['comment'] ?></p>
+                    </div>
+                    <div>
+                        <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#answerreview<?= $review['id'] ?>">Responder</button>
+                        <a href="index.php?page=deleteproduct&id=<?= $review['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+
+                    </div>
+
+                </div>
+            </li>
+        <?php } ?>
+    </ul>
+</div>
+
+<?php
+//Formularios para responder por reviews
+foreach ($productReviews as $review) {
+?>
+    <div class="modal fade" id="answerreview<?= $review['id'] ?>" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="answerreview" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="addProductModalLabel">Responder a <?= $review['name'] ?></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <?= $review['comment'] ?>
+                    </div>
+
+                    <form method="POST" action="includes/process/answerreview.php">
+                        <input type="hidden" value=<?= $review['id'] ?> name="id">
+                        <div class="mb-3 m-3">
+                            <label for="review" class="form-label">Respuesta</label>
+                            <textarea class="form-control" id="review" rows="3" name="review" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-bg-primary">Enviar</button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+<?php } ?>

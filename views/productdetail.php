@@ -7,13 +7,15 @@ $product = $products[$index];
 $ranking = 100 * ($product['popularity'] / 5);
 $ranking = round($ranking, 1);
 
+$productReviews = array_filter($reviews, function($review) use ($prodId){
+    return $review['product_id'] == $prodId;})
 
 ?>
 <h1>Detalle</h1>
 
 <?php if (isset($_GET['coment'])) { ?>
     <div class="alert alert-success w-50" role="success">
-        Calificación enviadag
+        Calificación enviada
     </div>
 
 <?php } ?>
@@ -27,7 +29,7 @@ $ranking = round($ranking, 1);
     <div class="card mb-3" style="max-width: 800px;">
         <div class="row g-0">
             <div class="col-md-6">
-                <img src="assets/imgs/products/<?= $product['img'] . ".png" ?? "assets/imgs/products/genericprod.png" ?>" class="img-fluid rounded-start" alt="...">
+                <img src="assets/imgs/products/<?= $product['img'] . ".png" ?? "assets/imgs/products/genericprod.png" ?>" class="img-fluid rounded-start" alt=<?= $product['name'] ?>>
             </div>
             <div class="col-md-6">
                 <div class="card-body d-flex flex-column justify-content-between h-75">
@@ -48,8 +50,8 @@ $ranking = round($ranking, 1);
 </div>
 
 <!--comentario Producto -->
-
-<div class="container justify-content-center m-3">
+<div class="container">
+<div class="justify-content-center m-3">
     <h2>Calificación</h2>
     <form method="post" action="includes/process/rankingProduct.php" class="w-50">
         <div class="mb-3">
@@ -73,4 +75,20 @@ $ranking = round($ranking, 1);
 
         <button type="submit" class="btn btn-bg-primary">Enviar</button>
     </form>
+</div>
+
+<!--Reseñas-->
+<ul class="list-group">
+  <?php 
+  
+  foreach($productReviews as $review){?>
+    <li class="list-group-item">
+        <div>
+            <p>Calificación: <?=$review['ranking']?> ⭐</p>
+            <p><?=$review['comment']?></p>
+        </div>
+    </li>
+<?php } ?>
+</ul>
+
 </div>

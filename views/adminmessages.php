@@ -18,6 +18,7 @@ include_once 'conn/db.php';
             <th scope="col">telefono</th>
             <th scope="col">Area</th>
             <th scope="col">Mensaje</th>
+            <th scope="col">Fecha</th>
             <th scope="col">Leido</th>
             <th scope="col">Acciones</th>
 
@@ -27,7 +28,7 @@ include_once 'conn/db.php';
         <?php
         foreach ($messages as $message) {
             $preview = mb_substr($message['content'], 0, 20) . "...";
-
+            $date = date('d/m/Y H:i', strtotime($message['created_at']));
 
 
         ?>
@@ -38,7 +39,12 @@ include_once 'conn/db.php';
                 <td><?= $message['phone'] ?></td>
                 <td><?= $message['Area'] ?></td>
                 <td><?= $preview ?></td>
-                <td><?= $message['read'] ?></td>
+                <td><?= $date ?></td>
+                <td><?php if ($message['read']) {
+                        echo "Si";
+                    } else {
+                        echo "No";
+                    } ?></td>
                 <td>
                     <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#answerMessage<?= $message['id'] ?>">Ver</button>
                     <a href="index.php?page=activemodify&id=<?= $message['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
