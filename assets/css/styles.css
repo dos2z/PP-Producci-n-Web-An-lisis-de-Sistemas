@@ -12,6 +12,9 @@ body{
  .background-secondary{
      background-color: var(--secondary-color) 
  }
+ .background-primary{
+     background-color: var(--primary-color);
+ }
  .btn-bg-primary:hover{
     background-color: var(--primary-color-dark);
     color: #fff;

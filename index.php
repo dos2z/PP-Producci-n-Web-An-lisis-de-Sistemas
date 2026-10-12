@@ -20,7 +20,7 @@ $page = $_GET["page"] ?? "home";
     <!-- CSS -->
 
     <link rel="stylesheet" href="assets/css/styles.css">
-    </body>
+  
     <title>City Farmac</title>
 </head>
 

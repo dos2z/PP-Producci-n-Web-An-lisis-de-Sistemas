@@ -1,13 +1,14 @@
 <?php
 include_once 'conn/db.php';
 $prodId = $_GET['id'] ?? null;
-$index = array_search($prodId, array_column($products, 'id'));
-$product = $products[$index];
-$ranking = 100 * ($product['popularity'] / 5);
-$ranking = round($ranking, 1);
 if (!$prodId) {
     $productReviews = $reviews;
 } else {
+    $index = array_search($prodId, array_column($products, 'id'));
+    $product = $products[$index];
+    $ranking = 100 * ($product['popularity'] / 5);
+    $ranking = round($ranking, 1);
+
     $productReviews = array_filter($reviews, function ($review) use ($prodId) {
         return $review['product_id'] == $prodId;
     });

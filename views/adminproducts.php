@@ -92,15 +92,15 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                         <td>
                             <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $product['id'] ?>">Editar</button>
                             <a href="index.php?page=reviewsproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-info">Reseñas</a>
-                            <a href="index.php?page=activemodify&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
-                                                                                                                                    if ($product['active']) {
-                                                                                                                                        echo "Desactivar";
-                                                                                                                                    } else {
-                                                                                                                                        echo "Activar";
-                                                                                                                                    }
-                                                                                                                                    ?></a>
+                            <a href="#" class="btn btn-sm btn-outline-warning"> <?php
+                                                                                if ($product['active']) {
+                                                                                    echo "Desactivar";
+                                                                                } else {
+                                                                                    echo "Activar";
+                                                                                }
+                                                                                ?></a>
                             <?php if (!$product['active']) { ?>
-                                <a href="index.php?page=deleteproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href="#" class="btn btn-sm btn-outline-danger">Eliminar</a>
                             <?php } ?>
                         </td>
                     </tr>

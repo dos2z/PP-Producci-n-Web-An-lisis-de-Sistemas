@@ -37,6 +37,17 @@ Ejemplo, en mi caso como la carpeta que contiene el proyecto se llama `pp-prodwe
 
 En esta instancia aún no hay una base de datos, todos los datos estan cargados en un archivo que se incluye en el proyecto
 
+## Usuarios de prueba
+| mail de ingreso        | Contraseña    | Rol           |
+| ---------------------- | ------------- | ------------- |
+| pedroadmin@ejemplo.com | 123456        | Administrador |
+| juan@ejemplo.mail      | 123456        | Usuario       |
+
+El sitio presenta 4 secciones de vista pública: inicio/home, Productos, contacto y login/register
+El usuario estandar solo accede a poder ver su perfil y a poder dejar comentarios en los productos
+El administrador no ve la sección ni de productos ni de contacto, en cambio administra mensajes, productos, categorias, marcas, reviews,
+usuarios, tipos de perfil
+En el inicio del administrador hay un panel con la mayoría de las secciones y al entrar a una de ellas este panel pasa a estar como nav secundario. A las reviews de los productos se accede a través de administrar productos
 ## Configuración de rutas
 
 El proyecto utiliza un router centralizado en `index.php`.

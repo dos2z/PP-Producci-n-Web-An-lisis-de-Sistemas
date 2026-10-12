@@ -49,7 +49,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                     <th scope="col">#</th>
                     <th scope="col">Nombre</th>
                     <th scope="col">email</th>
-                    <th scope="col">password</th>
+
                     <th scope="col">Administrador</th>
                     <th scope="col">Fecha inicio</th>
                     <th scope="col">Activo</th>
@@ -65,14 +65,14 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                         <th scope="row"><?= $user['id'] ?></th>
                         <td><?= $user['name'] ?></td>
                         <td><?= $user['email'] ?></td>
-                        <td><?= $user['password'] ?></td>
+
                         <td><?= $user['admin'] ?></td>
                         <td><?= $user['date'] ?></td>
                         <td><?= $user['active'] ?></td>
                         <td>
                             <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $user['id'] ?>">Editar</button>
 
-                            <a href="index.php?page=activemodify&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
+                            <a href="#" class="btn btn-sm btn-outline-warning"> <?php
                                                                                                                                 if ($user['active']) {
                                                                                                                                     echo "Desactivar";
                                                                                                                                 } else {
@@ -80,7 +80,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                                                                                                                                 }
                                                                                                                                 ?></a>
                             <?php if (!$user['active']) { ?>
-                                <a href="index.php?page=deleteproduct&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                                <a href="#?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
                             <?php } ?>
                         </td>
                     </tr>

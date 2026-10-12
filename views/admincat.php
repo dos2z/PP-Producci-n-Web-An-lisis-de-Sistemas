@@ -3,11 +3,9 @@
 include_once 'conn/db.php';
 
 // Obtener la categoría padre 
-$parentId = $_GET['parent'] ?? null;
-
-
-
-$parentId = (int)$parentId ?? null;
+$parentId = isset($_GET['parent'])
+    ? (int) $_GET['parent']
+    : null;
 
 
 $parentCategory = null;
@@ -16,7 +14,7 @@ $parentCategory = null;
 if ($parentId !== null) {
 
     foreach ($categories as $item) {
-        
+
         if ((int)$item['id'] === $parentId && $item['parent_id'] === null) {
             $parentCategory = $item;
 
@@ -27,7 +25,6 @@ if ($parentId !== null) {
     // Si el ID no corresponde a una categoría principal
     if ($parentCategory === null) {
         $parentId = null;
-       
     }
 }
 

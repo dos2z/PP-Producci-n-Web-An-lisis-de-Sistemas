@@ -4,7 +4,8 @@ $id = $_SESSION['id'];
 $user = array_filter($users, function ($user) use ($id) {
     return $user['id'] == $id;
 });
-$user = $user[1];
+$user = array_values($user);
+$user = $user[0];
 
 ?>
 <div class="container">
