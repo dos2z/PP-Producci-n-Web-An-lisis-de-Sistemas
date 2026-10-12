@@ -16,60 +16,62 @@ include_once 'conn/db.php';
     ?>
         <h2>No hay Mensajes</h2
             <?php } else { ?>
-            <table class="table table-striped table-hover align-middle">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">email</th>
-                <th scope="col">telefono</th>
-                <th scope="col">Area</th>
-                <th scope="col">Mensaje</th>
-                <th scope="col">Fecha</th>
-                <th scope="col">Leido</th>
-                <th scope="col">Acciones</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($messages as $message) {
-                $preview = mb_substr($message['content'], 0, 20) . "...";
-                $date = date('d/m/Y H:i', strtotime($message['created_at']));
-
-
-            ?>
+            <div class="table-responisve">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
                 <tr>
-                    <th scope="row"><?= $message['id'] ?></th>
-                    <td><?= $message['name'] ?></td>
-                    <td><?= $message['email'] ?></td>
-                    <td><?= $message['phone'] ?></td>
-                    <td><?= $message['Area'] ?></td>
-                    <td><?= $preview ?></td>
-                    <td><?= $date ?></td>
-                    <td><?php if ($message['read']) {
-                            echo "Si";
-                        } else {
-                            echo "No";
-                        } ?></td>
-                    <td>
-                        <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#answerMessage<?= $message['id'] ?>">Ver</button>
-                        <a href="index.php?page=activemodify&id=<?= $message['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
-                                                                                                                                if ($message['read']) {
-                                                                                                                                    echo "Leido";
-                                                                                                                                } else {
-                                                                                                                                    echo "No Leido";
-                                                                                                                                }
-                                                                                                                                ?></a>
-                        <?php if ($message['read']) { ?>
-                            <a href="index.php?page=deleteproduct&id=<?= $message['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                        <?php } ?>
-                    </td>
-                </tr>
-            <?php } ?>
-        </tbody>
-        </table>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">email</th>
+                    <th scope="col">telefono</th>
+                    <th scope="col">Area</th>
+                    <th scope="col">Mensaje</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Leido</th>
+                    <th scope="col">Acciones</th>
 
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($messages as $message) {
+                    $preview = mb_substr($message['content'], 0, 20) . "...";
+                    $date = date('d/m/Y H:i', strtotime($message['created_at']));
+
+
+                ?>
+                    <tr>
+                        <th scope="row"><?= $message['id'] ?></th>
+                        <td><?= $message['name'] ?></td>
+                        <td><?= $message['email'] ?></td>
+                        <td><?= $message['phone'] ?></td>
+                        <td><?= $message['Area'] ?></td>
+                        <td><?= $preview ?></td>
+                        <td><?= $date ?></td>
+                        <td><?php if ($message['read']) {
+                                echo "Si";
+                            } else {
+                                echo "No";
+                            } ?></td>
+                        <td>
+                            <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#answerMessage<?= $message['id'] ?>">Ver</button>
+                            <a href="index.php?page=activemodify&id=<?= $message['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
+                                                                                                                                    if ($message['read']) {
+                                                                                                                                        echo "Leido";
+                                                                                                                                    } else {
+                                                                                                                                        echo "No Leido";
+                                                                                                                                    }
+                                                                                                                                    ?></a>
+                            <?php if ($message['read']) { ?>
+                                <a href="index.php?page=deleteproduct&id=<?= $message['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        </div>
 
     <?php } ?>
 </section>

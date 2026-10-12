@@ -20,4 +20,8 @@ body{
  .hidden {
     display: none;
  }
-
+ .auth-form {
+    width: 100%;
+    max-width: 500px;
+    margin-inline: auto;
+}

@@ -16,7 +16,7 @@ if (isset($_GET['error'])) {
         include 'includes/components/alert.php';
     } ?>
 
-    <form method="post" action="includes/process/login.php" class="w-50">
+    <form method="post" action="includes/process/login.php" class="auth-form">
         <div class="mb-3">
             <label for="email" class="form-label">Correo electrónico</label>
             <input type="email" class="form-control" id="email" aria-describedby="emailHelp" name="email" required>

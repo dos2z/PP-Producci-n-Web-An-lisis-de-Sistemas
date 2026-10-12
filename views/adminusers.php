@@ -42,50 +42,52 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     ?>
         <h2>No hay Usuarios cargados</h2
             <?php } else { ?>
-            <table class="table table-striped table-hover align-middle">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">email</th>
-                <th scope="col">password</th>
-                <th scope="col">Administrador</th>
-                <th scope="col">Fecha inicio</th>
-                <th scope="col">Activo</th>
-                <th scope="col">Acciones</th>
-
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($users as $user) {
-            ?>
+            <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
                 <tr>
-                    <th scope="row"><?= $user['id'] ?></th>
-                    <td><?= $user['name'] ?></td>
-                    <td><?= $user['email'] ?></td>
-                    <td><?= $user['password'] ?></td>
-                    <td><?= $user['admin'] ?></td>
-                    <td><?= $user['date'] ?></td>
-                    <td><?= $user['active'] ?></td>
-                    <td>
-                        <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $user['id'] ?>">Editar</button>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">email</th>
+                    <th scope="col">password</th>
+                    <th scope="col">Administrador</th>
+                    <th scope="col">Fecha inicio</th>
+                    <th scope="col">Activo</th>
+                    <th scope="col">Acciones</th>
 
-                        <a href="index.php?page=activemodify&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
-                                                                                                                            if ($user['active']) {
-                                                                                                                                echo "Desactivar";
-                                                                                                                            } else {
-                                                                                                                                echo "Activar";
-                                                                                                                            }
-                                                                                                                            ?></a>
-                        <?php if (!$user['active']) { ?>
-                            <a href="index.php?page=deleteproduct&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                        <?php } ?>
-                    </td>
                 </tr>
-            <?php } ?>
-        </tbody>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($users as $user) {
+                ?>
+                    <tr>
+                        <th scope="row"><?= $user['id'] ?></th>
+                        <td><?= $user['name'] ?></td>
+                        <td><?= $user['email'] ?></td>
+                        <td><?= $user['password'] ?></td>
+                        <td><?= $user['admin'] ?></td>
+                        <td><?= $user['date'] ?></td>
+                        <td><?= $user['active'] ?></td>
+                        <td>
+                            <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $user['id'] ?>">Editar</button>
+
+                            <a href="index.php?page=activemodify&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
+                                                                                                                                if ($user['active']) {
+                                                                                                                                    echo "Desactivar";
+                                                                                                                                } else {
+                                                                                                                                    echo "Activar";
+                                                                                                                                }
+                                                                                                                                ?></a>
+                            <?php if (!$user['active']) { ?>
+                                <a href="index.php?page=deleteproduct&id=<?= $user['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
         </table>
+        </div>
     <?php } ?>
 </section>
 <!-- Modal add User-->
@@ -102,7 +104,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
                     $edit = false;
                     include "includes/components/adduser.php"
                     ?>
-                    
+
                 </form>
             </div>
 

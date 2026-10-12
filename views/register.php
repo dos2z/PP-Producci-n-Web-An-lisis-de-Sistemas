@@ -30,7 +30,7 @@ if (isset($_GET['error'])) {
         include 'includes/components/alert.php';
     } ?>
 
-    <form method="post" action="includes/process/register.php" class="w-50">
+    <form method="post" action="includes/process/register.php" class="auth-form">
         <div class="mb-3">
             <label for="name" class="form-label">Nombre</label>
             <input type="text" class="form-control" id="name" aria-describedby="emailHelp" name="name" required>

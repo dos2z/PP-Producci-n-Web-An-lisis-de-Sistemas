@@ -6,6 +6,7 @@
      <label for="email" class="form-label">Email</label>
      <input type="email" class="form-control" id="email" name="email" required value="<?= $edit ? $user['email'] : "" ?>">
  </div>
+ <?php if($_SESSION['isAdmin']){?>
  <div class="mb-3">
      <label for="profile" class="form-label">Tipo de perfil</label>
      <select class="form-select" name="profile" id="profile">
@@ -14,6 +15,7 @@
          <option value="1">Administrador</option>
      </select>
  </div>
+ <?php } ?>
  <div class="mb-3">
      <label for="description" class="form-label">Password</label>
      <input type="password" class="form-control" id="password" name="password" required>

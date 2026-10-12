@@ -20,13 +20,13 @@ $productReviews = array_filter(
 <h1>Detalle</h1>
 
 <?php if (isset($_GET['coment'])) { ?>
-    <div class="alert alert-success w-50" role="success">
+    <div class="alert alert-success auth-form" role="success">
         Calificación enviada
     </div>
 
 <?php } ?>
 <?php if (isset($_GET['error'])) { ?>
-    <div class="alert alert-danger w-50" role="danger">
+    <div class="alert alert-danger auth-form" role="danger">
         Ha ocurrido un problema, por favor intente nuevamente
     </div>
 <?php } ?>
@@ -56,10 +56,11 @@ $productReviews = array_filter(
 </div>
 
 <!--comentario Producto -->
-<div class="container">
+<?php if (isset($_SESSION['user'])) { ?>
+
     <div class="justify-content-center m-3">
         <h2>Calificación</h2>
-        <form method="post" action="includes/process/rankingProduct.php" class="w-50">
+        <form method="post" action="includes/process/rankingProduct.php" class="auth-form">
             <div class="mb-3">
                 <label for="name" class="form-label">Nombre</label>
                 <input type="text" class="form-control" id="name" name="name" required>
@@ -82,8 +83,11 @@ $productReviews = array_filter(
             <button type="submit" class="btn btn-bg-primary">Enviar</button>
         </form>
     </div>
+<?php } ?>
+<!--Reseñas-->
+<div>
+    <h2>Opiniones</h2>
 
-    <!--Reseñas-->
     <ul class="list-group">
         <?php
 

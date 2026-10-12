@@ -56,55 +56,58 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
     ?>
         <h2>No hay productos disponibles</h2
             <?php } else { ?>
-            <table class="table table-striped table-hover align-middle">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">Nombre</th>
-                <th scope="col">Descripción</th>
-                <th scope="col">Categoría</th>
-                <th scope="col">Precio</th>
-                <th scope="col">Stock</th>
-                <th scope="col">Valoración</th>
-                <th scope="col">Destacado</th>
-                <th scope="col">Activo</th>
-                <th scope="col">Acciones</th>
 
-            </tr>
-        </thead>
-        <tbody>
-            <?php
-            foreach ($products as $product) {
-                $description = mb_substr($product['description'], 0, 20) . "...";
-            ?>
+            <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+            <thead>
                 <tr>
-                    <th scope="row"><?= $product['id'] ?></th>
-                    <td><?= $product['name'] ?></td>
-                    <td><?= $description ?></td>
-                    <td><?= $product['category'] ?></td>
-                    <td><?= $product['price'] ?></td>
-                    <td><?= $product['stock'] ?></td>
-                    <td><?= $product['popularity'] ?>⭐</td>
-                    <td><?php if ($product['best']) echo "si ✪" ?></td>
-                    <td><?= $product['active'] ?></td>
-                    <td>
-                        <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $product['id'] ?>">Editar</button>
-                        <a href="index.php?page=reviewsproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-info">Reseñas</a>
-                        <a href="index.php?page=activemodify&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
-                                                                                                                                if ($product['active']) {
-                                                                                                                                    echo "Desactivar";
-                                                                                                                                } else {
-                                                                                                                                    echo "Activar";
-                                                                                                                                }
-                                                                                                                                ?></a>
-                        <?php if (!$product['active']) { ?>
-                            <a href="index.php?page=deleteproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
-                        <?php } ?>
-                    </td>
+                    <th scope="col">#</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Descripción</th>
+                    <th scope="col">Categoría</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Stock</th>
+                    <th scope="col">Valoración</th>
+                    <th scope="col">Destacado</th>
+                    <th scope="col">Activo</th>
+                    <th scope="col">Acciones</th>
+
                 </tr>
-            <?php } ?>
-        </tbody>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($products as $product) {
+                    $description = mb_substr($product['description'], 0, 20) . "...";
+                ?>
+                    <tr>
+                        <th scope="row"><?= $product['id'] ?></th>
+                        <td><?= $product['name'] ?></td>
+                        <td><?= $description ?></td>
+                        <td><?= $product['category'] ?></td>
+                        <td><?= $product['price'] ?></td>
+                        <td><?= $product['stock'] ?></td>
+                        <td><?= $product['popularity'] ?>⭐</td>
+                        <td><?php if ($product['best']) echo "si ✪" ?></td>
+                        <td><?= $product['active'] ?></td>
+                        <td>
+                            <button type=button class="btn btn-sm btn-outline-primary" data-bs-toggle="modal" data-bs-target="#editProduct<?= $product['id'] ?>">Editar</button>
+                            <a href="index.php?page=reviewsproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-info">Reseñas</a>
+                            <a href="index.php?page=activemodify&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-warning"> <?php
+                                                                                                                                    if ($product['active']) {
+                                                                                                                                        echo "Desactivar";
+                                                                                                                                    } else {
+                                                                                                                                        echo "Activar";
+                                                                                                                                    }
+                                                                                                                                    ?></a>
+                            <?php if (!$product['active']) { ?>
+                                <a href="index.php?page=deleteproduct&id=<?= $product['id'] ?>" class="btn btn-sm btn-outline-danger">Eliminar</a>
+                            <?php } ?>
+                        </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
         </table>
+        </div>
     <?php } ?>
 </section>
 <!-- Modal add Prod-->

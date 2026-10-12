@@ -1,2 +1,2 @@
 <?php
-header("Location: index.php/adminbrands");
+header('Location: ../../index.php?page=adminbrands');

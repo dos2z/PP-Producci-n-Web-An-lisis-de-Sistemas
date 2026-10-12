@@ -8,7 +8,7 @@ $parentId = $_GET['parent'] ?? null;
 
 
 $parentId = (int)$parentId ?? null;
-var_dump($parentId);
+
 
 $parentCategory = null;
 

@@ -12,7 +12,10 @@
          <?php
             //se define $categories en el elemento que contiene a este
             foreach ($categories as $id => $category) {
-                echo "<option value='$id'>$category</option>";
+                if ($category['parent_id'] !== null) {
+
+                    echo "<option value='$id'>" . $category['name'] . "</option>";
+                }
             }
             ?>
      </select>
@@ -35,7 +38,7 @@
          class="form-control"
          id="model"
          name="model"
-         value="<?= $edit ? $product['model']??"" : "" ?>">
+         value="<?= $edit ? $product['model'] ?? "" : "" ?>">
 
  </div>
  <div class="mb-3">
@@ -50,7 +53,7 @@
      <label for="img" class="form-label">Imagen</label>
      <input type="text" class="form-control" id="img" name="img">
  </div>
- <input class="form-check-input" type="checkbox" value="" id="checkChecked" name="best" value="<?= $edit ? $product['best'] : false ?>">
+ <input class="form-check-input" type="checkbox" value="" id="checkChecked" name="best" <?php if($product['best']){ echo"checked";}; ?> >
  <label class="form-check-label" for="checkChecked">
      Destacado
  </label>
