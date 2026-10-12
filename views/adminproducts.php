@@ -19,7 +19,7 @@ if (!isset($_SESSION['isAdmin']) || $_SESSION['isAdmin'] != true) {
         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#addProductModal">
             Agregar Producto
         </button>
-        <a href="index.php?page=reviewsproduct" class="btn btn-sm btn-primary">Reseñas</a>
+        <a href="index.php?page=reviewsproduct" class="btn btn-sm btn-warning">Reseñas</a>
 
     </div>
 
