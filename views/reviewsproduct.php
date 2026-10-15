@@ -15,7 +15,7 @@ if (!$prodId) {
 };
 ?>
 <a href="index.php?page=adminproducts" type="button" class="btn btn-primary">◄ Volver a Productos</a>
-<h1>Reviews de producto <?= $product['name'] ?></h1>
+<h1>Reviews de producto <?= $product['name'] ?? "" ?></h1>
 <form>
     <div class="mb-3 w-25">
         <select class="form-select" name="orderBy" id="orderBy">
@@ -30,10 +30,13 @@ if (!$prodId) {
     </div>
     <button type="submit" class="btn btn-outline-primary">Ordenar</button>
 </form>
-
-<div class="progress my-5" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">
-    <div class="progress-bar bg-warning bold" style="width: <?= $ranking ?>%"><?= $product['popularity'] ?? 0 ?></div>
-</div>
+<?php
+if ($prodId) {
+?>
+    <div class="progress my-5" role="progressbar" aria-valuenow=<?= $ranking ?> aria-valuemin="0" aria-valuemax="100">
+        <div class="progress-bar bg-warning bold" style="width: <?= $ranking ?>%"><?= $product['popularity'] ?? 0 ?></div>
+    </div>
+<?php } ?>
 <div class="container">
     <ul class="list-group">
         <?php
